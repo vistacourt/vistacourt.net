@@ -1,4 +1,4 @@
 # vistacourt.net
 Home website
-Hoted on Raspberry Pi Jessie
+Hosted on Raspberry Pi Jessie
 
