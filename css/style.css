@@ -1,17 +1,18 @@
 * {
-box-sizing: border-box;	
+box-sizing: border-box;
 }
 
 body {
-color: white;  
-background-color: black;
+color: white;
+background-color: #0F1740;
 font-family: Arial, Helvetica, sans-serif;
-margin: 0;
+margin: 10;
 padding: 0;
 }
 
 h1 {
-color: red;    
+color: red;
+margin: 10;
 font-family: Arial, Helvetica, sans-serif;
 font: 40;
 }
@@ -50,7 +51,7 @@ section {
 	font-family: Arial, Helvetica, sans-serif;
 	color: black;
 
-	
+
 }
 #top-menu a {
     text-decoration:blink;
@@ -67,7 +68,7 @@ section {
 }
 
 #link-list {
-    background: black;
+    background: #0F1740;
 
 }
 #link-list li {
