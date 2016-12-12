@@ -2,8 +2,17 @@
 box-sizing: border-box;
 }
 
+.jumbotron {
+    /* add bootstrap jumbotron background image */
+    background-image: url("../img/snow1.png");
+    /* change bootstrap jumbotron text color */
+    /*color: #FFF;*/
+}
+
+
 body {
 color: white;
+background-image: url("../img/snow1.png");
 background-color: #0F1740;
 font-family: Arial, Helvetica, sans-serif;
 margin: 10;
@@ -11,13 +20,15 @@ padding: 0;
 }
 
 h1 {
-color: red;
+color: white;
 margin: 10;
 font-family: Arial, Helvetica, sans-serif;
 font: 40;
 }
 
-
+.button {
+  color: red;
+}
 p {
     text-align: right;
     margin: 0 0%;
@@ -68,7 +79,7 @@ section {
 }
 
 #link-list {
-    background: #0F1740;
+    /*background: #0F1740;*/
 
 }
 #link-list li {
