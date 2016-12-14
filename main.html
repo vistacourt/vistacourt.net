@@ -2,10 +2,15 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>vistacourt.NET</title>
-<link rel="stylesheet" href="css/style.css">
+
 <link rel="icon" type="image/png"  href="img/clover.png">
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 <script src="js/vistacourt.js"></script>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body onload="displayDate()" >
 <!-- <h1>vistacourt.NET <img src="img/norway1.jpg" width="30" height="22" alt="tiny black and white Norwegian flag"></h1> -->
@@ -20,36 +25,57 @@
 <main>
 <section id="s1">
 
-<ul id="link-list">
-<li><a href="https://news.google.com" target="_blank">Google News</a></li>
-<li><a href="https://www.optionshouse.com/" target="_blank">OptionsHouse</a></li>
-<li><a href="https://outlook.office.com/owa/" target="_blank">Outlook</a></li>
-<li><a href="https://email05.godaddy.com" target="_blank">Godaddy Webmail</a></li>
-<li><a href="https://www.linkedin.com/" target="_blank">LinkedIn</a></li>
-<li><a href="https://vistacourt.sharepoint.com/FamilyDocs/SitePages/Home.aspx" target="_blank">Family Docs</a></li>
-<li><a href="https://home.nest.com/thermostat/01AA02AB17120DCA" target="_blank">Nest</a></li>
-<li><a href="https://netcam.belkin.com" target="_blank">NetCam</a></li>
-<li><a href="https://www.coursera.org/" target="_blank">Coursera</a></li>
-<li><a href="https://www.salesforce.com/" target="_blank">Salesforce</a></li>
-<li><a href="https://www.amazon.com/" target="_blank">Amazon.com</a></li>
-<li><a href="https://mail.google.com" target="_blank">Gmail</a></li>
-<li><a href="https://www.richuncles.com" target="_blank">Rich Uncles</a></li>
-<li><a href="https://nb.fidelity.com/public/nb/401k/home" target="_blank">Fidelity</a></li>
-<li><a href="https://www.figfcu.com/" target="_blank">FIG</a></li>
-<li><a href="https://www.chase.com/" target="_blank">Chase - Amazon</a></li>
-<li><a href="http://uverse.com/" target="_blank">U-verse</a></li>
-<li><a href="http://ancestry.com/" target="_blank">Ancestry.com</a></li>
-<li><a href="https://hockey.fantasysports.yahoo.com/hockey/27565/2" target="_blank">Yahoo Fantasy Hockey</a></li>
-<li><a href="https://www.codecademy.com/" target="_blank">Codecademy</a></li>
-<li><a href="https://github.com/" target="_blank">GitHub Repositories</a></li>
-<li><a href="https://learnpythonthehardway.org/book/" target="_blank">Learn Python the Hard Way</a></li>
-<li><a href="https://www.freecodecamp.com" target="_blank">Free Code Camp</a></li>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-3">
+      <ul id="link-list">
+        <li><a href="https://vistacourt.sharepoint.com/FamilyDocs/SitePages/Home.aspx" target="_blank">Family Docs</a></li>
+        <li><a href="https://outlook.office.com/owa/" target="_blank">Outlook</a></li>
+        <li><a href="https://email05.godaddy.com" target="_blank">Godaddy Webmail</a></li>
+        <li><a href="https://mail.google.com" target="_blank">Gmail</a></li>
+        <li><a href="https://netcam.belkin.com" target="_blank">NetCam</a></li>
+        <li><a href="https://home.nest.com/thermostat/01AA02AB17120DCA" target="_blank">Nest</a></li>
+        <li><a href="https://www.salesforce.com/" target="_blank">Salesforce</a></li>
+        <li><a href="http://www.speedtest.net/" target="_blank">SpeedTest</a></li>
+      </ul>
+    </div>
+    <div class="col-sm-3">
+      <ul id="link-list">
+        <li><a href="https://github.com/" target="_blank">GitHub</a></li>
+        <li><a href="https://www.coursera.org/" target="_blank">Coursera</a></li>
+        <li><a href="https://www.codecademy.com/" target="_blank">Codecademy</a></li>
+        <li><a href="https://learnpythonthehardway.org/book/" target="_blank">LPHW</a></li>
+        <li><a href="https://www.freecodecamp.com" target="_blank">Free Code Camp</a></li>
 
-</ul>
-</section>
+      </ul>
+    </div>
+    <div class="col-sm-3">
+      <ul id="link-list">
+        <li><a href="https://www.optionshouse.com/" target="_blank">OptionsHouse</a></li>
+        <li><a href="https://www.figfcu.com/" target="_blank">FIG</a></li>
+        <li><a href="https://www.chase.com/" target="_blank">Chase - Amazon</a></li>
+        <li><a href="https://nb.fidelity.com/public/nb/401k/home" target="_blank">Fidelity</a></li>
+        <li><a href="https://www.richuncles.com" target="_blank">Rich Uncles</a></li>
+        <li><a href="https://www.linkedin.com/" target="_blank">LinkedIn</a></li>
+        <li><a href="https://www.amazon.com/" target="_blank">Amazon.com</a></li>
+      </ul>
+    </div>
+    <div class="col-sm-3">
+      <ul id="link-list">
+        <li><a href="http://uverse.com/" target="_blank">U-verse</a></li>
+        <li><a href="http://ancestry.com/" target="_blank">Ancestry.com</a></li>
+        <li><a href="https://hockey.fantasysports.yahoo.com/hockey/27565/2" target="_blank">Fantasy Hockey</a></li>
+        <li><a href="http://76.218.242.187:8080/" target="_blank">Arduino Weather</a></li>
+        <li><a href="https://agent.electricimp.com/IdB1tu3ESyDt" target="_blank">Electric Imp Weather</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+<!-- </section>
 <section id="s2">
-<!-- <img src="img/GratefulDead.jpg" alt="Picture of Vik, Norway" align="right"> -->
-</section>
+</section> -->
 </main>
 </body>
 </html>
