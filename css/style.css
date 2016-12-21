@@ -46,6 +46,14 @@ font-family: Arial, Helvetica, sans-serif;
 font: 20;
 }
 
+h3 {
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 70px;
+  padding-top: 40px;
+  padding-bottom: 30px;
+}
+
 .button {
   color: red;
 }
@@ -68,8 +76,8 @@ main {
 }
 
 section {
-	width: 50%;
-	float: left;
+	width: 100%;
+  padding-top: 40px;
 }
 
 #s1 {
@@ -104,34 +112,43 @@ section {
   color: red;
   font-weight: bold;
 	font-family: Arial, Helvetica, sans-serif;
-
 }
 
 #link-list {
-  /*background-color: black;*/
   padding-top: 20px;
   padding-bottom: 20px;
   margin-left: 20px;
   background-color: rgba(255,255,255,0.1);
-  height: 400px;
+  height: 250px;
 
 
 }
 #link-list li {
-    margin-right:15px;
+  margin-right:15px;
 	font-family: Arial, Helvetica, sans-serif;
 	color: red;
 }
 
 #link-list a {
-    text-decoration:blink;
+  text-decoration:blink;
 	font-family: Arial, Helvetica, sans-serif;
   font-size:17px;
 	color: white;
 }
 
 #link-list a:hover {
-    color: red;
+  color: red;
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 18px;
+}
+
+
+.allButFooter {
+    min-height: calc(100vh - 65px);
+}
+
+#footer {
+    position:fixed;
+    bottom:0;
+    text-align: center;
 }
