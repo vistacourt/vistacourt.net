@@ -125,8 +125,8 @@ section {
 #square {
   padding-top: 20px;
   padding-bottom: 20px;
-  margin-left: 20px;
-  height: 250px;
+  margin-left: 15px;
+  /*height: 100%;*/
 }
 
 #link-list li {
