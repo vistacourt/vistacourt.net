@@ -39,7 +39,7 @@ function passWord() {
 	// history.go(-1);
 	// if (pass1.toLowerCase() == "617661") {
 	// // alert('You Got it Right!');
-	window.open('main.html');
+	window.open('main.html','_self');
 	// break;
 	// }
 	// testV+=1;
