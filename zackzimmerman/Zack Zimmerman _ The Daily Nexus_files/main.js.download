@@ -1,0 +1,52 @@
+/* When page is scrolled below a certain point, set menu to absolute. */
+
+/* Initialize bugfix for widening header */
+jQuery("html").append("<div id=\"menu-fix\" style=\"position: fixed; height: 41px; background-color: white; z-index: 99; width: 100%; right: 0; display: none; border-bottom: #E2E2E2 solid 1px; \"></div>")
+
+const scrollPoint = 250; //Point where menu is set to absolute
+//Event Handler for scroll function
+jQuery(window).scroll(function(){
+    //Check if scroll is below a certain point
+    if (jQuery(window).scrollTop() >= scrollPoint){
+        //console.log("Scrolled below point :", jQuery(window).scrollTop());
+        jQuery(".main-menu").css({position: 'fixed', top: '0px'});
+        jQuery("#menu-fix").css({display: 'block'});
+    }
+    else{
+        //console.log("Scrolled above point :", jQuery(window).scrollTop());
+        jQuery(".main-menu").css({position: 'initial'});
+        jQuery("#menu-fix").css({display: 'none'});
+    }
+})
+
+var searchIsOppened = false;
+var visible = false;
+
+jQuery(document).ready(function(){
+    jQuery("i.fa-search").parent().click(function(){
+        if(jQuery('.searchpop').is(':visible'))
+        {
+            jQuery(this).removeClass('searchClicked');
+            jQuery('.searchpop').fadeOut();
+            setTimeout(function(){visible=false}, 20);
+        }
+        else {
+            jQuery(this).addClass('searchClicked');
+            jQuery('.searchpop').fadeIn();
+            jQuery('input#gsc-i-id1').focus();
+            setTimeout(function(){visible=true}, 400);
+        }
+    });
+
+    jQuery(document).on('click', function(e) {
+        if(visible)
+        {
+            if (e.target.id === '___gcse_0' || e.target.id === 'gsc-i-id1') {
+                console.log('Clicked inside');
+            } else {
+                jQuery('.searchpop').fadeOut();
+                setTimeout(function(){visible=false}, 20);
+            }
+        }
+    })
+});

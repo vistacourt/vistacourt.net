@@ -62,6 +62,25 @@ h3 {
   text-align: right;
   margin-right: 10px;
   font-family: Arial, Helvetica, sans-serif;
+  color: #777777
+}
+
+.test {
+  margin-right: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 200px;
+  color: #ffff00
+}
+
+.btn1 {
+  background-color: #000000; /* Green */
+  border: none;
+  color: black;
+  padding: 0px 0px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
 }
 
 p {
