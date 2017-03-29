@@ -17,3 +17,10 @@ function calculate(){
   document.getElementById("c6").innerHTML = r6;
   document.getElementById("c20s").innerHTML = r20s;
 }
+
+
+function randomQuote(){
+
+  rqVar = "Test Quote";
+  document.getElementById('rqId').innerHTML = rqVar;
+}

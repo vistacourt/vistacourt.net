@@ -8,7 +8,7 @@
 }
 
 .well {
-  background-color: rgba(24, 28, 147,0.6);
+  background-color: rgba(24, 28, 147,0.1);
   padding-top: 20px;
   padding-bottom: 40px;
   padding-left: 100px;
@@ -38,6 +38,7 @@ margin-left: 10px;
 padding-bottom: 20px;
 font-family: Arial, Helvetica, sans-serif;
 font: 40;
+text-align: center;
 }
 
 h2 {
@@ -62,7 +63,7 @@ h3 {
   text-align: right;
   margin-right: 10px;
   font-family: Arial, Helvetica, sans-serif;
-  color: #777777
+  color: black;
 }
 
 .test {
@@ -108,7 +109,10 @@ section {
 
 
 #top-menu {
+	text-align: center;
     background: white;
+    width: 100%
+    color: black;
 
 }
 #top-menu li {
@@ -118,14 +122,18 @@ section {
 	color: black;
 
 
+
 }
 #top-menu a {
 	font-family: Arial, Helvetica, sans-serif;
 	color: black;
-	text-align: left;
   font-size: 18px;
 }
-
+#top-menu b {
+	font-family: Arial, Helvetica, sans-serif;
+	color: grey;
+  font-size: 16px;
+}
 #top-menu a:hover {
   text-decoration:none;
   color: red;
