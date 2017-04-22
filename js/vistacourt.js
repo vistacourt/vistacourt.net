@@ -6,6 +6,9 @@
 //     });
 // });
 
+
+
+
 function passWord() {
 	window.open('main.html','_self');
 }

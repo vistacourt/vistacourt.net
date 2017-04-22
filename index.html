@@ -26,6 +26,7 @@
         <div class="row">
           <div class="col-lg-12">
             <h3>vistacourt.NET</h3>
+
           </div>
         </div>
       <div class="row">
@@ -47,22 +48,39 @@
           <br>
           <br>
           <a href="projects.html">Projects</a>
-
+          <br>
+          <br>
+          <br>
+          <br>
+          <div id="startLat"></div>
+          <div id="startLon"></div>
         </div>
 
       </div>
   </div>
-<!-- </div> -->
+
 </center>
 </div>
 <center>
   <footer>
+
     <div>
       Tom Kelly<br>
         <a href="mailto:someone@example.com">support@vistacourt.net</a>
     </div>
   </footer>
 </center>
+<script type ="text/javascript">
+window.onload = function() {
+  var startPos;
+  var geoSuccess = function(position) {
+    startPos = position;
+    document.getElementById('startLat').innerHTML = startPos.coords.latitude;
+    document.getElementById('startLon').innerHTML = startPos.coords.longitude;
+  };
+  navigator.geolocation.getCurrentPosition(geoSuccess);
+};
+</script>
 </body>
 
 
