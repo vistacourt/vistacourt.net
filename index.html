@@ -16,7 +16,7 @@
 
 </head>
 
-<body>
+<body onload="geoFindMe()">
 
   <div class="allButFooter">
   <!-- <div class="jumbotron"> -->
@@ -43,7 +43,6 @@
           <br>
           <br>
           <br>
-
           <a href="bio.html">Bio</a>
           <br>
           <br>
@@ -52,8 +51,8 @@
           <br>
           <br>
           <br>
-          <div id="startLat"></div>
-          <div id="startLon"></div>
+
+          <div id="out"></div>
         </div>
 
       </div>
@@ -71,15 +70,34 @@
   </footer>
 </center>
 <script type ="text/javascript">
-window.onload = function() {
-  var startPos;
-  var geoSuccess = function(position) {
-    startPos = position;
-    document.getElementById('startLat').innerHTML = startPos.coords.latitude;
-    document.getElementById('startLon').innerHTML = startPos.coords.longitude;
-  };
-  navigator.geolocation.getCurrentPosition(geoSuccess);
-};
+function geoFindMe() {
+  var output = document.getElementById("out");
+
+  if (!navigator.geolocation){
+    output.innerHTML = "Geolocation is not supported by your browser";
+    return;
+  }
+
+  function success(position) {
+    var latitude  = position.coords.latitude;
+    var longitude = position.coords.longitude;
+
+    output.innerHTML = 'Latitude is ' + latitude + '° <br>Longitude is ' + longitude + '°<br>';
+
+    var img = new Image();
+    img.src = "https://maps.googleapis.com/maps/api/staticmap?center=" + latitude + "," + longitude + "&zoom=13&size=300x300&sensor=false";
+
+    output.appendChild(img);
+  }
+
+  function error() {
+    output.innerHTML = "Unable to retrieve your location";
+  }
+
+  output.innerHTML = "Locating…";
+
+  navigator.geolocation.getCurrentPosition(success, error);
+}
 </script>
 </body>
 
