@@ -39,6 +39,20 @@ background-repeat: no-repeat;
 
 }
 
+#zip{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin: 300px 0 0 -200px;
+}
+
+#button{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin: 300px 0 0 -0px;
+}
+
 i {
   color: #fff;
   font-family: weather;
@@ -74,4 +88,18 @@ i {
 
 #weather .currently {
   margin: 0 20px;
+}
+button {
+  display: block;
+  margin: 15px auto;
+  width: 140px;
+  padding: 5px;
+  background: transparent;
+  color: #fff;
+  border: 0;
+  border-radius: 5px;
+}
+
+input {
+    border-radius: 7px;
 }
