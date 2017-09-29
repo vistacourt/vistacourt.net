@@ -1,50 +1,74 @@
-// v3.1.0
-//Docs at http://simpleweatherjs.com
-
-/* Does your browser support geolocation? */
-if ("geolocation" in navigator) {
-  $('.js-geolocation').show();
-} else {
-  $('.js-geolocation').hide();
-}
-
-/* Where in the world are you? */
-$('.js-geolocation').on('click', function() {
-  navigator.geolocation.getCurrentPosition(function(position) {
-    loadWeather(position.coords.latitude+','+position.coords.longitude); //load weather using your lat/lng coordinates
-  });
-});
-
-
 
 $(document).ready(function() {
-  //var location = document.getElementById('zip').value;
+document.body.style.backgroundColor = "black";
 document.getElementById("button").onclick = function() {getZip()};
-
-
-  $.simpleWeather({
-    location: document.getElementById('zip').value,
-    woeid: '',
-    unit: 'f',
-    success: function(weather) {
-      html = '<h2><i class="icon-'+weather.code+'"></i> '+weather.temp+'&deg;'+weather.units.temp+'</h2>';
-      html += '<ul><li>'+weather.city+', '+weather.region+'</li>';
-      html += '<li class="currently">'+weather.currently+'</li>';
-      html += '<li>'+weather.wind.direction+' '+weather.wind.speed+' '+weather.units.speed+'</li></ul>';
-
-      $("#weather").html(html);
-    },
-    error: function(error) {
-      $("#weather").html('<p>'+error+'</p>');
-    }
-  });
+document.getElementById("button2").onclick = function() {getType()};
 });
+
+var t = 'f';
+
+function getType(){
+  if (t === 'f'){
+    var t = 'c';
+  }
+  else {
+    var t = 'f';
+    }
+  }
 
 
 
 
 function getZip() {
-    document.getElementById("button").innerHTML = "YOU CLICKED ME!";
+    document.getElementById("button").innerHTML = "Submit";
 $(document).ready;
     console.log(document.getElementById('zip').value);
+
+
+
+
+
+    $.simpleWeather({
+      location: document.getElementById('zip').value,
+      woeid: '',
+      unit: t,
+
+      success: function(weather) {
+        html = '<h2><i class="icon-'+weather.code+'"></i> '+weather.temp+'&deg;'+weather.units.temp+'</h2>';
+        html += '<ul><li>'+weather.city+', '+weather.region+'</li>';
+        html += '<li class="currently">'+weather.currently+'</li>';
+        html += '<li>'+weather.wind.direction+' '+weather.wind.speed+' '+weather.units.speed+'</li></ul>';
+          console.log(weather.currently);
+
+            if (weather.currently.includes('Cloudy')){
+                document.body.style.backgroundImage = "url('http://cdn.weatheravenue.com/img/background/background.jpg')";
+              }
+
+            if (weather.currently.includes('Sunny') || weather.currently.includes('Clear')) {
+                console.log('sunny');
+                document.body.style.backgroundImage = "url('http://runitlikeamom.com/wp-content/uploads/2016/03/Sunshine-and-Rainbows.jpg')";
+              }
+
+            if (weather.currently.includes('Rain') || weather.currently.includes('Showers') || weather.currently.includes('Thunderstorms')){
+                console.log('rain');
+                document.body.style.backgroundImage = "url('https://wallpapercave.com/wp/oScSlk7.jpg')";
+            }
+
+            if (weather.currently.includes('Snow') || weather.currently.includes('Showers') || weather.currently.includes('Thunderstorms')){
+                console.log('rain');
+                document.body.style.backgroundImage = "url('http://findingfabulous.co.za/wp-content/uploads/2016/06/DSC_0408.jpg')";
+              }
+
+            else{
+              console.log('fail');
+            }
+
+        $("#weather").html(html);
+      },
+      error: function(error) {
+        $("#weather").html('<p>'+error+'</p>');
+      }
+    });
+
+
 }
