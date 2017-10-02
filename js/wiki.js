@@ -1,0 +1,7 @@
+function getSearch(){
+
+}
+
+function getRandom(){
+
+}
