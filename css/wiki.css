@@ -39,6 +39,7 @@ background-repeat: no-repeat;
   border-color: blue;
   border-radius: 15px;
   border-width:medium;
+  outline: -webkit-focus-ring-color auto 0px;
 }
 
 #button2{
@@ -46,12 +47,13 @@ background-repeat: no-repeat;
   width:160px;
   top: 50%;
   left: 50%;
-  margin: -65px 0 0 -78px;
+  margin: -75px 0 0 -78px;
   height:70px;
   background-color: #fff;
   border-color: orange;
   border-radius: 15px;
   border-width:medium;
+  outline: -webkit-focus-ring-color auto 0px;
 }
 
 #search{
@@ -66,4 +68,37 @@ input {
     height:50px;
     font-size: 24px;
     text-align: center;
+    outline: -webkit-focus-ring-color auto 0px;
+}
+#results {
+  width:80%;
+  margin:auto;
+}
+
+.result {
+  padding:10px;
+  text-align:left;
+  background: white;
+  margin: 20px;
+  cursor: pointer;
+  border-radius: 0px;
+  border-left: solid 5px rgba(0, 0, 0, 0);
+}
+
+.result:hover {
+  border-left: solid 5px blue;
+  box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.5);
+}
+
+.container, .container-fluid {
+  text-align: center;
+}
+.outer {
+  text-align: center;
+  position: relative;
+  top: 0%;
+}
+
+.jump {
+  top: 30%;
 }
