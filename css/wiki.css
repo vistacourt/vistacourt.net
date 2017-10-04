@@ -7,10 +7,11 @@
 #wiki {
   position: fixed;
   top: 50%;
-  left: 50%;
-  margin: 50px 0 0 -200px;
+  left: 5%;
+  display: none;
+/*  margin: 50px 0 0 -200px;
   z-index: 15;
-  text-transform: uppercase;
+*/
 }
 
 html {
@@ -23,17 +24,22 @@ html {
 body {
   padding: 0 0;
   font: 13px 'Open Sans', "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    background-color: #000;
+background-repeat: no-repeat;
+
+    /*background: transparent;
     background: #000 url(http://vignette4.wikia.nocookie.net/creepypasta/images/b/b4/3029579-poster-p-1-3029579-who-needs-business-school-the-hidden-startup-resources-at-your-local-library.jpg);
 background-repeat: no-repeat;
     background-size: contain center;
-    /*background: transparent;*/
+
+    */
 }
 #button{
   position: fixed;
-  width:400px;
+  width:330px;
   top: 50%;
   left: 50%;
-  margin: -140px 0 0 -202px;
+  margin: -140px 0 0 -250px;
   height:40px;
   background-color: #fff;
   border-color: blue;
@@ -47,8 +53,8 @@ background-repeat: no-repeat;
   width:160px;
   top: 50%;
   left: 50%;
-  margin: -75px 0 0 -78px;
-  height:70px;
+  margin: -140px 0 0 90px;
+  height:40px;
   background-color: #fff;
   border-color: orange;
   border-radius: 15px;
@@ -62,6 +68,8 @@ background-repeat: no-repeat;
   top: 50%;
   left: 50%;
   margin: -200px 0 0 -250px;
+  border-color: green;
+  border-width:medium;
 }
 input {
     border-radius: 15px;
@@ -73,6 +81,7 @@ input {
 #results {
   width:80%;
   margin:auto;
+  background-color: #fff;
 }
 
 .result {

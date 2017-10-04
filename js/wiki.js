@@ -1,5 +1,17 @@
 function getSearch(){
 
+
+var a = "test123";
+
+
+  document.querySelector("button").addEventListener("click", function(){
+      document.querySelector('div').style.display = "block";
+  });
+
+
+
+
+
 }
 
 function getRandom(){
