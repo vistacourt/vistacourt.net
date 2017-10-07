@@ -16,9 +16,6 @@
   border-color: #181C93;
 }
 
-.well-sm {
-
-}
 
 .btn {
   width: 100%;
@@ -30,9 +27,8 @@ color: white;
 background-size: cover;
 background-color: #000000;
 font-family: Arial, Helvetica, sans-serif;
-margin: 10;
+margin: 0;
 padding: 0;
-
 background-repeat: no-repeat;
 }
 
@@ -63,19 +59,7 @@ h3 {
   color: red;
 }
 
-.dateline {
-  text-align: right;
-  margin-right: 10px;
-  font-family: Arial, Helvetica, sans-serif;
-  color: black;
-}
 
-.test {
-  margin-right: 10px;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 200px;
-  color: #ffff00
-}
 
 .btn1 {
   background-color: #000000; /* Green */
@@ -114,10 +98,26 @@ section {
     text-align: center;
 }
 
-#project-image{
-  display: block;
-  margin: 0 auto;
+
+
+@media (min-width: 10px) and (max-width: 300px) {
+  h3{
+    font-size: 22px;
+  }
 }
+
+@media (min-width: 301px) and (max-width: 479px) {
+  h3{
+    font-size: 34px;
+  }
+}
+
+@media (min-width: 478px) and (max-width: 768px) {
+  h3{
+    font-size: 50px;
+  }
+}
+
 
 #top-menu {
 	text-align: center;
