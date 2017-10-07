@@ -97,18 +97,21 @@ p {
 
 main {
 	margin: 2;
+  text-align: center;
 }
 
 section {
-	/*width: 100%;*/
-  padding-top: 40px;
+	width: 100%;
+  padding-top: 2%;
 }
 
 #s1 {
-
+  padding-top: 2%;
+    text-align: center;
 }
 #s2 {
-
+  /*padding-top: 5%;*/
+    text-align: center;
 }
 
 #project-image{

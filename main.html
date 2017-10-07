@@ -9,129 +9,36 @@
 <link rel="icon" type="image/png"  href="img/clover.png">
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
+<!-- <script src="https://api.ipify.org?format=jsonp&callback=getIP"></script> -->
 <script src="js/vistacourt.js"></script>
-<script async src="https://platform.twitter.com/widgets.js"></script>
-<script src="http://moonphases.co.uk/js/widget.js"></script>
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/style.css">
+
 </head>
-<body>
-<div class="allButFooter">
-<h1>vistacourt.NET</h1>
-<ul id="top-menu">
-<li><a href="main.html">Home</a></li>
-<li><a href="bio.html">Bio</a></li>
-<li><a href="projects.html">Projects</a</li>
-<li><a href="dev.html">Dev</a></li>
-</ul>
+
+
 <main>
+  <!-- <body onload="execute()"> -->
+  <div class="allButFooter">
+  <h1>vistacourt.NET</h1>
+
+<section>
+    <div id="map"></div>
+</section>
+
 <section id="s1">
-<div class="container">
-  <div class="row">
-    <div class="col-md-3">
-      <ul id="link-list">
-        <li><a href="https://vistacourt.sharepoint.com/FamilyDocs/SitePages/Home.aspx" target="_blank">Family Docs</a></li>
-        <li><a href="https://outlook.office.com/owa/" target="_blank">Outlook</a></li>
-        <li><a href="https://email05.godaddy.com" target="_blank">Godaddy Webmail</a></li>
-        <li><a href="https://mail.google.com" target="_blank">Gmail</a></li>
-        <li><a href="https://netcam.belkin.com" target="_blank">NetCam</a></li>
-        <li><a href="https://home.nest.com/thermostat/01AA02AB17120DCA" target="_blnk">Nest</a></li>
-        <li><a href="https://www.salesforce.com/" target="_blank">Salesforce</a></li>
-        <li><a href="http://www.speedtest.net/" target="_blank">SpeedTest</a></li>
-        <li><a href="https://www.flightradar24.com/34.22,-118.2/11" target="_blank">FlightRadar24</a></li>
-    </div>
-    <div class="col-md-3">
-      <ul id="link-list">
-        <li><a href="https://github.com/" target="_blank">GitHub</a></li>
-        <li><a href="https://www.coursera.org/" target="_blank">Coursera</a></li>
-        <li><a href="https://courses.edx.org/dashboard" target="_blank">edX</a></li>
-        <li><a href="https://stackskills.com/courses/enrolled" target="_blank">StackSkills</a></li>
-        <li><a href="https://www.codecademy.com/" target="_blank">Codecademy</aStackSkillsli>
-        <li><a href="https://www.udemy.com/home/my-courses/learning/" target="_blank">Udemy</a></li>
-        <li><a href="https://classroom.udacity.com/me" target="_blank">Udacity</a></li>
-        <li><a href="https://learnpythonthehardway.org/book/" target="_blank">LPHW</a></li>
-        <li><a href="https://www.freecodecamp.com" target="_blank">Code Camp</a></li>
+  <div id="ip"></div>
+  <div id="org"></div>
 
-      </ul>
-    </div>
-    <div class="col-md-3">
-      <ul id="link-list">
-        <li><a href="https://www.optionshouse.com/" target="_blank">OptionsHouse</a></li>
-        <li><a href="https://www.figfcu.com/" target="_blank">FIG</a></li>
-        <li><a href="https://www.chase.com/" target="_blank">Chase - Amazon</a></li>
-        <li><a href="https://nb.fidelity.com/public/nb/401k/home" target="_blank">Fidelity</a></li>
-        <li><a href="https://www.richuncles.com" target="_blank">Rich Uncles</a></li>
-        <li><a href="https://www.paypal.com/myaccount/home" target="_blank">PayPal</a></li>
-        <li><a href="https://www.amazon.com/" target="_blank">Amazon.com</a></li>
-        <li><a href="https://www.linkedin.com/" target="_blank">LinkedIn</a></li>
-        <li><a href="https://www.yelp.com/la-crescenta-montrose-ca-us" target="_blank">Yelp</a></li>
-      </ul>
-    </div>
-    <div class="col-md-3">
-      <ul id="link-list">
-        <li><a href="http://uverse.com/" target="_blank">U-verse</a></li>
-        <li><a href="http://ancestry.com/" target="_blank">Ancestry.com</a></li>
-        <li><a href="https://hockey.fantasysports.yahoo.com/hockey/27565/2" target="_blank">Fantasy Hockey</a></li>
-        <li><a href="http://abc7.com/weather/doppler/southland-overview/" target="_blank">ABC7 Mega Doppler</a></li>
-        <li><a href="https://www.wunderground.com/q/zmw:91214.1.99999?sp=KCAGLEND67" target="_blank">Weather Underground</a></li>
-        <li><a href="http://192.168.1.254/cgi-bin/home.ha" target="_blank">Router</a></li>
-        <li><a href="https://www.stubhub.com/my/profile/" target="_blank">StubHub</a></li>
-        <li><a href="https://www.nhl.com/kings" target="_blank">Kings</a></li>
-        <li><a href="https://www.nhl.com/flyers" target="_blank">Flyers</a></li>
-      </ul>
-    </div>
-
-  </div>
-
-  <div class="row">
-    <div class="col-md-6">
-      <div id="square">
-        <iframe src="https://agent.electricimp.com/IdB1tu3ESyDt" width="100%" height="250" style="border:none;" ></iframe>
-      </div>
-    </div>
-    <div class="col-md-3">
-      <div id="square">
-        <script type="text/javascript" src="http://moonphases.co.uk/js/widget.js" id="moonphase_widget" widget="small-nodate" lat="" lng="" date=""></script>
-      </div>
-    </div>
-    <div class="col-md-3">
-      <div id="square">
-        <iframe src="http://24.180.25.92:8080" width="100%" height="100%" style="border:none;" ></iframe>
-      </div>
-    </div>
-    <div class="col-md-3">
-      <div id="square">
-
-      </div>
-    </div>
-
-  </div>
-
-  <div class="row">
-    <div class="col-md-4">
-      <div id="square">
-        <a class="twitter-timeline" data-height="500" data-width=100% data-theme="dark" href="https://twitter.com/realDonaldTrump"></a>
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div id="square">
-        <a class="twitter-timeline" data-width=100% data-height="500" data-theme="dark" href="https://twitter.com/flightradar24"></a>
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div id="square">
-        <a class="twitter-timeline" data-width=100% data-height="500" data-theme="dark" href="https://twitter.com/Zimeeee"></a>
-      </div>
-    </div>
-  </div>
+</section>
 
 
-</div>
-
-
-<!-- </section>
+</section>
 <section id="s2">
-</section> -->
+  <div id="address"></div>
+  <div id="loc"></div>
+  <div id="postal"></div>
+</section>
 </main>
 </div>
 <center>
