@@ -1,4 +1,9 @@
 
+$(document).ready(function(){
+$("#core").html("CPU Cores: " + navigator.hardwareConcurrency);
+});
+
+
 $.get("http://ipinfo.io", function (response) {
     $("#ip").html(response.ip);
     $("#address").html(response.city + ", " + response.region);
@@ -9,6 +14,8 @@ $.get("http://ipinfo.io", function (response) {
 		$("#map").html("<img src='https://maps.googleapis.com/maps/api/staticmap?size=800x300&sensor=false&zoom=10&center=" + response.loc +"'/>"); }, "jsonp");
 
 
+
+// console.log(navigator.hardwareConcurrency);
 // $(document).ready(function(){
 //
 //
