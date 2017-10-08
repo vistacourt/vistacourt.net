@@ -71,9 +71,13 @@ input {
     outline: -webkit-focus-ring-color auto 0px;
 }
 #results {
+
   width:80%;
-  margin:auto;
+
   background-color: #fff;
+  margin: 400px 0 0 150px;
+  border-color: white;
+  border-width:medium;
 }
 
 .result {
