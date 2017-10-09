@@ -2,9 +2,10 @@ var streamers = ["powlie", "rivid", "ESL_SC2", "sjow", "m4sha", "Kagaminium", "D
 var hr;
 
 function getData() {
+  console.log("getData");
   streamers.forEach(function(streamer) {
     var url = "https://api.twitch.tv/kraken/streams/" + streamer;
-    var clientID =  '7acmrljq8w9dm08sm0jsfmaawdsd8n3';
+    var clientID =  'uppb89cnxwltwv5uisyat4z07ngm9q';
     $.ajax({
       type: 'GET',
       url: url,
@@ -32,6 +33,7 @@ function getData() {
 }
 
 function fillTheBar(streamer) {
+  console.log("fill the bar");
   setupBar();
   getLogo(streamer);
   getNickname(streamer);
@@ -40,12 +42,14 @@ function fillTheBar(streamer) {
 }
 
 function setupBar() {
+  console.log("setupBar")
   $(".streamers").append("<div></div><hr>");
   $(".streamers > div:empty").addClass("streamer apiBackground");
   $(".streamer:empty").append("<div class=\"logo col-xs-1\"></div><div class=\"nickname col-xs-3\"></div><div class=\"description col-xs-7\"></div><div class=\"dotContainer col-xs-1\"></div>");
 }
 
 function getLogo(streamer) {
+    console.log("getLogo")
   if (isOnline(streamer)) {
     $(".logo:empty").append("<img>");
     $("img:last").attr("src", streamer["stream"]["channel"]["logo"]);
@@ -58,6 +62,7 @@ function getLogo(streamer) {
 }
 
 function getNickname(streamer) {
+    console.log("getNickname")
   var channelName = "";
   var startOfName;
   var endOfName;
@@ -87,6 +92,7 @@ function getNickname(streamer) {
 }
 
 function getStatus(streamer) {
+    console.log("getStatus")
   var status = "";
   $(".description:empty").append("<p></p>");
   if (isOnline(streamer)) {
@@ -104,6 +110,7 @@ function getStatus(streamer) {
 }
 
 function getDot(streamer) {
+    console.log("getDot")
   $(".dotContainer:empty").append("<div class=\"statusDot\"></div>");
   if (isOnline(streamer)) {
     $(".statusDot:last").css("background", "#7ED329")
@@ -113,18 +120,22 @@ function getDot(streamer) {
 }
 
 function isOnline(streamer) {
+    console.log("isOnline")
   return (streamer["stream"] !== null && streamer["stream"] !== undefined)
 }
 
 function isOffline(streamer) {
+    console.log("isOffline")
   return streamer["mature"] !== undefined
 }
 
 function isClosed(streamer) {
+    console.log("isClosed")
   return streamer["message"];
 }
 
 $(".btn-success").click(function() {
+  console.log("Online")
   hr = $(".offline, .closed").next();
   hr.hide();
   hr = $(".online").next();
@@ -136,6 +147,7 @@ $(".btn-success").click(function() {
 });
 
 $(".btn-danger").click(function() {
+  console.log("Offline")
   hr = $(".online").next();
   hr.hide();
   hr = $(".offline, .closed").next();
@@ -147,6 +159,7 @@ $(".btn-danger").click(function() {
 });
 
 $(".btn-default").click(function() {
+  console.log("All")
   $("hr").show();
   $(".online, .offline, .closed").show();
   $(".btn-danger, .btn-success").removeClass("active");
