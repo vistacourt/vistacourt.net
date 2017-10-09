@@ -4,15 +4,6 @@
     font-style: normal;
 }
 
-#wiki {
-  position: fixed;
-  top: 50%;
-  left: 5%;
-  display: none;
-/*  margin: 50px 0 0 -200px;
-  z-index: 15;
-*/
-}
 
 html {
   width: 100%;
@@ -31,7 +22,7 @@ body {
   width:330px;
   top: 50%;
   left: 50%;
-  margin: -140px 0 0 -250px;
+  margin: -240px 0 0 -270px;
   height:40px;
   background-color: #fff;
   border-color: blue;
@@ -45,7 +36,7 @@ body {
   width:160px;
   top: 50%;
   left: 50%;
-  margin: -140px 0 0 90px;
+  margin: -240px 0 0 70px;
   height:40px;
   background-color: #fff;
   border-color: orange;
@@ -54,12 +45,12 @@ body {
   outline: -webkit-focus-ring-color auto 0px;
 }
 
-#search{
+#searchBox{
   width:500px;
   position: fixed;
   top: 50%;
   left: 50%;
-  margin: -200px 0 0 -250px;
+  margin: -300px 0 0 -270px;
   border-color: green;
   border-width:medium;
 }
@@ -71,13 +62,15 @@ input {
     outline: -webkit-focus-ring-color auto 0px;
 }
 #results {
-
-  width:80%;
-
-  background-color: #fff;
-  margin: 400px 0 0 150px;
+  border-radius: 15px;
+  width:60%;
+  color: white;
+  background-color: #24272A;
+  margin: auto;
+  margin: 300px auto auto auto;
   border-color: white;
   border-width:medium;
+  padding: 20px 10px 10px 40px;
 }
 
 .result {
@@ -93,17 +86,4 @@ input {
 .result:hover {
   border-left: solid 5px blue;
   box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.5);
-}
-
-.container, .container-fluid {
-  text-align: center;
-}
-.outer {
-  text-align: center;
-  position: relative;
-  top: 0%;
-}
-
-.jump {
-  top: 30%;
 }

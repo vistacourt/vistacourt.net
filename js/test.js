@@ -1,10 +1,13 @@
 
+$(document).ready(function() {
+    $('#btn').click(function() {
+      foo($('#id01').val());
+    });
+});
+
 
 
 function auto(){
-
-
-
 $("#searchform").autocomplete({
     source: function(request, response) {
         $.ajax({
@@ -21,4 +24,11 @@ $("#searchform").autocomplete({
         });
     }
 });
+}
+
+
+function foo(){
+  console.log("test");
+  console.log(foo("#id01"))
+
 }
