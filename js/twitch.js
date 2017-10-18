@@ -1,24 +1,32 @@
-var streamers = ["powlie", "rivid", "ESL_SC2", "sjow", "m4sha", "Kagaminium", "DisStream"];
+var streamers = [
+  "powlie",
+  "rivid",
+  "ESL_SC2",
+  "sjow",
+  "m4sha",
+  "Kagaminium",
+  "DisStream"
+];
 var hr;
 
 function getData() {
   console.log("getData");
   streamers.forEach(function(streamer) {
     var url = "https://api.twitch.tv/kraken/streams/" + streamer;
-    var clientID =  'uppb89cnxwltwv5uisyat4z07ngm9q';
+    var clientID = "uppb89cnxwltwv5uisyat4z07ngm9q";
     $.ajax({
-      type: 'GET',
+      type: "GET",
       url: url,
       headers: {
-        'Client-ID': clientID
+        "Client-ID": clientID
       },
       success: function(streamer) {
         if (streamer.stream === null) {
           $.ajax({
-            type: 'GET',
+            type: "GET",
             url: streamer._links.channel,
             headers: {
-              'Client-ID': clientID
+              "Client-ID": clientID
             },
             success: function(streamer) {
               fillTheBar(streamer);
@@ -33,7 +41,6 @@ function getData() {
 }
 
 function fillTheBar(streamer) {
-  console.log("fill the bar");
   setupBar();
   getLogo(streamer);
   getNickname(streamer);
@@ -42,19 +49,21 @@ function fillTheBar(streamer) {
 }
 
 function setupBar() {
-  console.log("setupBar")
-  $(".streamers").append("<div></div><hr>");
+  $(".streamers").append("<div></div>");
   $(".streamers > div:empty").addClass("streamer apiBackground");
-  $(".streamer:empty").append("<div class=\"logo col-xs-1\"></div><div class=\"nickname col-xs-3\"></div><div class=\"description col-xs-7\"></div><div class=\"dotContainer col-xs-1\"></div>");
+  $(".streamer:empty").append(
+    '<div class="logo col-xs-1"></div><div class="nickname col-xs-3"></div><div class="description col-xs-7"></div><div class="dotContainer col-xs-1"></div>'
+  );
 }
 
 function getLogo(streamer) {
-    console.log("getLogo")
   if (isOnline(streamer)) {
     $(".logo:empty").append("<img>");
     $("img:last").attr("src", streamer["stream"]["channel"]["logo"]);
   } else if (isClosed(streamer)) {
-    $(".logo:empty").append("<i class=\"fa fa-question-circle\" aria-hidden=\"true\"></i>")
+    $(".logo:empty").append(
+      '<i class="fa fa-question-circle" aria-hidden="true"></i>'
+    );
   } else {
     $(".logo:empty").append("<img>");
     $("img:last").attr("src", streamer["logo"]);
@@ -62,7 +71,6 @@ function getLogo(streamer) {
 }
 
 function getNickname(streamer) {
-    console.log("getNickname")
   var channelName = "";
   var startOfName;
   var endOfName;
@@ -76,8 +84,10 @@ function getNickname(streamer) {
   } else if (isClosed(streamer)) {
     $(".streamer:last").addClass("closed");
     startOfName = streamer["message"].indexOf("'") + 1;
-    if (streamer["message"].indexOf("'") !== streamer["message"].lastIndexOf("'")) {
-      endOfName = streamer["message"].lastIndexOf("'")
+    if (
+      streamer["message"].indexOf("'") !== streamer["message"].lastIndexOf("'")
+    ) {
+      endOfName = streamer["message"].lastIndexOf("'");
     } else {
       endOfName = streamer["message"].lastIndexOf(" ") - 3;
     }
@@ -92,12 +102,11 @@ function getNickname(streamer) {
 }
 
 function getStatus(streamer) {
-    console.log("getStatus")
   var status = "";
   $(".description:empty").append("<p></p>");
   if (isOnline(streamer)) {
     if (streamer["stream"]["channel"]["status"].length > 45) {
-      status = streamer["stream"]["channel"]["status"].substring(0, 45) + "..."
+      status = streamer["stream"]["channel"]["status"].substring(0, 45) + "...";
     } else {
       status = streamer["stream"]["channel"]["status"];
     }
@@ -110,32 +119,28 @@ function getStatus(streamer) {
 }
 
 function getDot(streamer) {
-    console.log("getDot")
-  $(".dotContainer:empty").append("<div class=\"statusDot\"></div>");
+  $(".dotContainer:empty").append('<div class="statusDot"></div>');
   if (isOnline(streamer)) {
-    $(".statusDot:last").css("background", "#7ED329")
+    $(".statusDot:last").css("background", "#7ED329");
   } else {
-    $(".statusDot:last").css("background", "#D35353")
+    $(".statusDot:last").css("background", "#D35353");
   }
 }
 
 function isOnline(streamer) {
-    console.log("isOnline")
-  return (streamer["stream"] !== null && streamer["stream"] !== undefined)
+  return streamer["stream"] !== null && streamer["stream"] !== undefined;
 }
 
 function isOffline(streamer) {
-    console.log("isOffline")
-  return streamer["mature"] !== undefined
+  return streamer["mature"] !== undefined;
 }
 
 function isClosed(streamer) {
-    console.log("isClosed")
   return streamer["message"];
 }
 
-$(".btn-success").click(function() {
-  console.log("Online")
+$(document).on("click", ".btn-success", function() {
+  console.log("Online");
   hr = $(".offline, .closed").next();
   hr.hide();
   hr = $(".online").next();
@@ -146,8 +151,8 @@ $(".btn-success").click(function() {
   $(".btn-success").addClass("active");
 });
 
-$(".btn-danger").click(function() {
-  console.log("Offline")
+$(document).on("click", ".btn-danger", function() {
+  console.log("Offline");
   hr = $(".online").next();
   hr.hide();
   hr = $(".offline, .closed").next();
@@ -158,8 +163,8 @@ $(".btn-danger").click(function() {
   $(".btn-danger").addClass("active");
 });
 
-$(".btn-default").click(function() {
-  console.log("All")
+$(document).on("click", ".btn-default", function() {
+  console.log("All");
   $("hr").show();
   $(".online, .offline, .closed").show();
   $(".btn-danger, .btn-success").removeClass("active");

@@ -1,34 +1,16 @@
-
-$(document).ready(function() {
-    $('#btn').click(function() {
-      foo($('#id01').val());
-    });
-});
-
-
-
-function auto(){
-$("#searchform").autocomplete({
-    source: function(request, response) {
-        $.ajax({
-            url: "http://en.wikipedia.org/w/api.php",
-            dataType: "jsonp",
-            data: {
-                'action': "opensearch",
-                'format': "json",
-                'search': request.term
-            },
-            success: function(data) {
-                response(data[1]);
-            }
-        });
+function diffArray(arr1, arr2) {
+  var newArr = [];
+  // Same, same; but different.
+  for (x=0; x<arr1; x++){
+    a=arr1[x];
+    for (i=0; i<arr2; i++){
+      b=arr2[b];
+      if (b != x){
+        newArr.push(x);
+      }
     }
-});
+  }
+  return newArr;
 }
 
-
-function foo(){
-  console.log("test");
-  console.log(foo("#id01"))
-
-}
+diffArray([1, 2, 3, 5], [1, 2, 3, 4, 5]);
