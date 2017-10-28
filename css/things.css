@@ -8,7 +8,7 @@
 
 }
 
-#btn, #fld {
+#btn, #btnHigh, #btnLow, #btnMail, #fld, #fldHigh, #fldLow, #fldMail {
 display: inline-block;
 padding: 2px 15px;
 font-size: 12px;
@@ -26,7 +26,7 @@ border: 1px solid transparent;
   padding-top: 10px;
   padding-bottom: 10px;
   border-radius: 2%;
-  margin: 10px;
+  margin: 6px;
 }
 
 #feedback {
@@ -39,7 +39,9 @@ border: 1px solid transparent;
   margin-left: 50px 0 50px 0;
 }
 
-
+#smallText {
+  font-size: 50%;
+}
 
 
 
@@ -73,7 +75,7 @@ main {
     position:fixed;
     bottom:0;
     text-align: center;
-    font-size: 80%;
+    font-size: 8px;
     font-family: arial;
 }
 @media (min-width: 10px) and (max-width: 300px) {

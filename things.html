@@ -26,7 +26,7 @@
         <h3>vistacourt.NET</h3>
       </div>
 
-<br/><br/>
+
   <!-- this is the 'thing area'-------------------------->
   <!-- 1st row verticaly centered text in the square columns -->
   <div class="container-fluid">
@@ -37,31 +37,46 @@
     <div class="col-md-3">
         <div class="framing" id="price">
           Loading...
+
+
         </div>
-    </div>
-
-    <!-- <div class="col-md-3">
-      <div class="framing">
-
-    </div>
-    </div>
-
-
+</div>
 
     <div class="col-md-3">
       <div class="framing">
-      </div>
-    </div>
-    <div class="col-md-3">
-      <div class="framing">
-        <label for="fld">Roman Numeral Convert</label>
+        <label for="fldHigh">High</label>
         <br/>
-        <input type="text" id="fld">
-        <input type="button" value="convert" id="btn" onclick="convertToRoman();"></input>
-        <div id="feedback">
+        <input type="text" id="fldHigh">
+        <input type="button" value="set" id="btnHigh" onclick="setHigh();"></input>
+        <div id="feedbackHigh">
         </div>
       </div>
-    </div> -->
+</div>
+
+
+    <div class="col-md-3">
+      <div class="framing">
+        <label for="fldLow">Low</label>
+        <br/>
+        <input type="text" id="fldLow">
+        <input type="button" value="set" id="btnLow" onclick="setLow();"></input>
+        <div id="feedbackLow">
+        </div>
+
+      </div>
+    </div>
+
+
+    <div class="col-md-3">
+      <div class="framing">
+        <label for="fldMail">Email</label>
+        <br/>
+        <input type="text" id="fldMail">
+        <input type="button" value="set" id="btnMail" onclick="setMail();"></input>
+        <div id="feedbackMail">
+        </div>
+      </div>
+    </div>
 
   </div>
 </div>
@@ -76,7 +91,7 @@
   </main>
 <center>
   <footer>
-    <div>
+    <div id="smallText">
       Tom Kelly<br>
       <a href="mailto:raspberrypi460@gmail.com">raspberrypi460@gmail.com</a>
     </div>
@@ -86,3 +101,13 @@
 
 
 </html>
+
+
+
+
+<!-- <label for="fld">Roman Numeral Convert</label>
+<br/>
+<input type="text" id="fld">
+<input type="button" value="convert" id="btn" onclick="convertToRoman();"></input>
+<div id="feedback">
+</div> -->
