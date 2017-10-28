@@ -24,7 +24,7 @@ function displayData() {
   	.then(res => res.json())
     .then(json => {
     	const topCoin = json[0];
-    	document.getElementById('price').innerHTML = `${topCoin.price_btc} BTC = $US ${topCoin.price_usd}<br/>${new Date()}`;
+    	document.getElementById('price').innerHTML = `${topCoin.price_btc} BTC =  ${topCoin.price_usd}`;
     });
 }
 

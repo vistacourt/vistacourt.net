@@ -20,12 +20,13 @@ border: 1px solid transparent;
 .framing {
   border-style: solid;
   border-width: 1px;
-  border-color: red;
+  border-color: #18370A;
   padding-left: 1px;
   padding-right: 1px;
   padding-top: 10px;
   padding-bottom: 10px;
   border-radius: 2%;
+  margin: 10px;
 }
 
 #feedback {
@@ -39,10 +40,7 @@ border: 1px solid transparent;
 }
 
 
-#vlogo {
-  padding-bottom: 70px;
-  padding-top: 20px;
-}
+
 
 
 body {
@@ -77,4 +75,21 @@ main {
     text-align: center;
     font-size: 80%;
     font-family: arial;
+}
+@media (min-width: 10px) and (max-width: 300px) {
+  h3{
+    font-size: 22px;
+  }
+}
+
+@media (min-width: 301px) and (max-width: 479px) {
+  h3{
+    font-size: 40px;
+  }
+}
+
+@media (min-width: 478px) and (max-width: 768px) {
+  h3{
+    font-size: 50px;
+  }
 }
