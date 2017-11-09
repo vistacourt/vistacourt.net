@@ -1,6 +1,12 @@
 
 $(document).ready(function(){
 $("#core").html("CPU Cores: " + navigator.hardwareConcurrency);
+
+
+
+
+
+
 });
 
 
@@ -12,6 +18,11 @@ $.get("http://ipinfo.io", function (response) {
 		$("#postal").html(response.postal);
     $("#details").html(JSON.stringify(response, null, 4));
 		$("#map").html("<img src='https://maps.googleapis.com/maps/api/staticmap?size=800x300&sensor=false&zoom=10&center=" + response.loc +"'/>"); }, "jsonp");
+
+
+
+
+
 
 // --------------------------------------------------------------------------------------------------------
 // p elements for displaying lat / long and address
