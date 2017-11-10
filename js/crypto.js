@@ -1,48 +1,48 @@
 
 
 
-function setHigh(num) {
-  console.log(num);
-  var num=  document.getElementById("fldHigh").value;
-
-
-
-  console.log(num);
-  document.getElementById("feedbackHigh").innerHTML = num;
-  return num;
-}
-
-
-
-// ---------------------------------------------------------------
-
-
-function setLow(num) {
-  console.log(num);
-  var num=  document.getElementById("fldLow").value;
-
-
-
-  console.log(num);
-  document.getElementById("feedbackLow").innerHTML = num;
-  return num;
-}
+// function setHigh(num) {
+//   console.log(num);
+//   var num=  document.getElementById("fldHigh").value;
+//
+//
+//
+//   console.log(num);
+//   document.getElementById("feedbackHigh").innerHTML = num;
+//   return num;
+// }
+//
+//
+//
+// // ---------------------------------------------------------------
+//
+//
+// function setLow(num) {
+//   console.log(num);
+//   var num=  document.getElementById("fldLow").value;
+//
+//
+//
+//   console.log(num);
+//   document.getElementById("feedbackLow").innerHTML = num;
+//   return num;
+// }
 
 
 
 // -----------------------------------------------------
 
 
-function setMail(num) {
-  console.log(num);
-  var num=  document.getElementById("fldMail").value;
-
-
-
-  console.log(num);
-  document.getElementById("feedbackMail").innerHTML = num;
-  return num;
-}
+// function setMail(num) {
+//   console.log(num);
+//   var num=  document.getElementById("fldMail").value;
+//
+//
+//
+//   console.log(num);
+//   document.getElementById("feedbackMail").innerHTML = num;
+//   return num;
+// }
 
 // -----------------------------------------------------------------
 
