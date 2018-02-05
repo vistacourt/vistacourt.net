@@ -16,6 +16,20 @@
   <script src="js/things.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
   <link rel="stylesheet" href="css/things.css">
+
+
+
+  <script type="text/javascript">
+  			function updateValue(){
+  				var rawFile = new XMLHttpRequest();
+  				rawFile.open("GET", "file", false);
+  				rawFile.send(null);
+  				document.getElementById("status").innerHTML = rawFile.responseText;
+  				setTimeout('updateValue()',1000);
+  			}
+  		</script>
+
+
 </head>
 
 <!--Navigation bar-->
@@ -29,7 +43,7 @@ $(function(){
 });
 </script>
 <!--end of Navigation bar-->
-<body>
+<body onLoad="updateValue()">
 
 
 
