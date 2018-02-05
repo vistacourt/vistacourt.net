@@ -28,7 +28,7 @@
   <script type="text/javascript">
   			function updateValue(){
   				var rawFile = new XMLHttpRequest();
-  				rawFile.open("GET", "http://192.168.1.121/things.html", false);
+  				rawFile.open("GET", "status", false);
   				rawFile.send(null);
   				document.getElementById("status").innerHTML = rawFile.responseText;
   				setTimeout('updateValue()',1000);
