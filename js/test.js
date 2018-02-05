@@ -1,16 +1,7 @@
-function diffArray(arr1, arr2) {
-  var newArr = [];
-  // Same, same; but different.
-  for (x=0; x<arr1; x++){
-    a=arr1[x];
-    for (i=0; i<arr2; i++){
-      b=arr2[b];
-      if (b != x){
-        newArr.push(x);
-      }
-    }
-  }
-  return newArr;
-}
+var http = require('http');
 
-diffArray([1, 2, 3, 5], [1, 2, 3, 4, 5]);
+var server = http.createServer(function(req, res) {
+  res.writeHead(200);
+  res.end('Hello Http');
+});
+server.listen(8080);
