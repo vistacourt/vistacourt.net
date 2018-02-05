@@ -9,24 +9,42 @@
 <link rel="icon" type="image/png"  href="img/clover.png">
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
-<!-- <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script> -->
-
 <!-- <script src="https://api.ipify.org?format=jsonp&callback=getIP"></script> -->
 <script src="js/vistacourt.js"></script>
-<link rel="stylesheet" href="css/bootstrap.min.css">
+<!-- <link rel="stylesheet" href="css/bootstrap.min.css"> -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+
 <link rel="stylesheet" href="css/style.css">
-<!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAGKz5WulWVhj1GFM9muV75k5meXJoJkfQ&callback=initMap"
-type="text/javascript"></script> -->
-<!-- <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAGKz5WulWVhj1GFM9muV75k5meXJoJkfQ&sensor=false" type="text/javascript"></script> -->
 
 </head>
 
-  <!-- <body onload="init()"> -->
-  <body>
+<!--Navigation bar-->
+<div id="nav-placeholder">
+
+</div>
+
+<script>
+$(function(){
+  $("#nav-placeholder").load("nav.html");
+});
+</script>
+<!--end of Navigation bar-->
+
+
+
+
+
+
+
+
+
+
 <main>
   <!-- <body onload="execute()"> -->
   <div class="allButFooter">
     <div class="container">
+      <center>
+
   <h3>vistacourt.NET</h3>
 
 <section>
@@ -42,42 +60,31 @@ type="text/javascript"></script> -->
 <br/>
 </section>
 <section id="s2">
-  ISP Location
   <div id="loc"></div>
-  <div id="addressIsp"></div>
+  <div id="address"></div>
   <div id="postal"></div>
 </section>
 <br/><br/>
 <section>
 <!-- This Script is from www.javascriptbestcodes.com, Provided by: Web Smile -->
-<!-- <script type='text/javascript' src='http://m.free-codes.org/g.php?id=2002'></script>
+<script type='text/javascript' src='http://m.free-codes.org/g.php?id=2002'></script>
 <script src="http://www.clocklink.com/embed.js"></script>
-<script type="text/javascript" language="JavaScript">obj=new Object;obj.clockfile="world001-green.swf";obj.TimeZone="GMT-0700";obj.width=480;obj.height=250;obj.wmode="transparent";showClock(obj);</script> -->
-<!-- ------------------------------------------------------------------------------------------ -->
+<script type="text/javascript" language="JavaScript">obj=new Object;obj.clockfile="world001-green.swf";obj.TimeZone="GMT-0700";obj.width=480;obj.height=250;obj.wmode="transparent";showClock(obj);</script>
 
 </section>
 
-
-<!-- <section>
-  <div id="msg"></div>
-  <br/>
-  <div id="address"></div>
-<br/>
-  <button onclick="getLocation()" style="background-color:#000; width:100px; color:#f00;border: 1; border-color:#333">Locate Me</button>
-  <br/>  <br/>
-  <center>
-    <div id="map_canvas" style="width: 500px; height: 300px"></div>
-</center>
-</section>
-<br/> -->
-
+<br/><br/>
+<a href="crypto.html">cryptocurrencies</a>
 </main>
 </div>
 </div>
+
+</center>
+
 <center>
   <footer>
     <div>
-      Tom Kelly<br>
+      Tom Kelly<br/>
         <a href="mailto:raspberrypi460@gmail.com">raspberrypi460@gmail.com</a>
     </div>
   </footer>
