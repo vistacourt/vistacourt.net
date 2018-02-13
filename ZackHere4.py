@@ -22,7 +22,7 @@ def loop():
     for host in nm.all_hosts():
       x=datetime.now().strftime("%A, %B %d - %I:%M:%S %p")
       x1=datetime.today()-timedelta(hours=0,minutes=15)
-      if ('iPhone' in nm[host].hostname() and '-iPhone' not in nm[host].hostname()) or zack1 < x1:
+      if ('iPhone' in nm[host].hostname() and '-iPhone' not in nm[host].hostname()): #or zack1 < x1:
         print()
         zack = x
         zack1 = datetime.today()
