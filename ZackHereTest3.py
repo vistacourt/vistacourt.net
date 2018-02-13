@@ -19,6 +19,14 @@ print ("</style>")
 print ("</head>")
 print ("<body>")
 
+"<p>Zack </p>" 
+"<p>Tess </p>" 
+"<p>Tom </p>" 
+
+zack=0
+tess=0
+tom=0
+
 
 nm = nmap.PortScanner()
 nm.scan('192.168.1.*','62078-62079')
@@ -27,13 +35,13 @@ print ("<br/>")
 print ("<div style='display: inline-block; text-align: left;'>")
 for host in nm.all_hosts():
   if 'iPhone' in nm[host].hostname() and '-iPhone' not in nm[host].hostname():
-    print("<p>Zack <sm-txt>%s %s</sm-txt></p>" % (host, nm[host].hostname()))
+    print(zackText)
 
   if 'Tess-iPhone' in nm[host].hostname() and 'Tess-iPhone-2' not in nm[host].hostname():
-    print("<p>Tess <sm-txt>%s %s</sm-txt></p>" % (host, nm[host].hostname()))
+    print(tessText)
 
   if 'Tom-iPhone' in nm[host].hostname():
-    print("<p>Tom <sm-txt>%s %s</sm-txt></p>" % (host, nm[host].hostname()))
+    print(tomText)
 
 print ("</div>")
 print ("</body>")
