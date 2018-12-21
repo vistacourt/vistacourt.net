@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>NHL Schedule</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+</head>
+
+<body ng-app="plunker" ng-cloak="">
+  <div class="container" ng-controller="MainCtrl">
+    <h1 class="text-center">NHL Schedule</h1>
+    <div class="row">
+      <div class="col">
+        <div class="form-group">
+          <label for="FromDate">From</label>
+          <input id="FromDate" ng-model="FromDate" class="form-control" type="date" >
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-group">
+          <label for="ToDate">To</label>
+          <input id="ToDate" ng-model="ToDate" class="form-control" type="date" >
+        </div>
+      </div>
+      <div class="col-12 text-center">
+        <button class="btn btn-success" type="button" ng-click="GetData()" ng-disabled="!FromDate || !ToDate">
+          <span>
+            <i class="fa fa-search"></i>
+            <span>Get Data</span>
+          </span>
+        </button>
+      </div>
+    </div>
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#Overview">Overview</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active" data-toggle="tab" href="#Stats">Stats</a>
+      </li>
+    </ul>
+    <div class="tab-content">
+      <div class="tab-pane fade" id="Overview">
+        <div class="row text-center d-flex justify-content-center mt-1">
+          <div class="col-auto mb-3">
+            <b>Total Items</b>
+            <br /> {{data.totalItems}}
+          </div>
+          <div class="col-auto mb-3">
+            <b>Total Events</b>
+            <br /> {{data.totalEvents}}
+          </div>
+          <div class="col-auto mb-3">
+            <b>Total Games</b>
+            <br /> {{data.totalGames}}
+          </div>
+          <div class="col-auto mb-3">
+            <b>Total Matches</b>
+            <br /> {{data.totalMatches}}
+          </div>
+          <div class="col-auto mb-3">
+            <b>Wait</b>
+            <br /> {{data.wait}}
+          </div>
+        </div>
+        <div class="card bg-info text-white mb-2" ng-repeat="date in data.dates">
+          <div class="card-header text-center d-flex justify-content-center">
+            {{date.date | date:'fullDate'}}
+          </div>
+          <div class="card-body">
+            <div class="row text-center  d-flex justify-content-center">
+              <div class="col-auto mb-3">
+                <b>Total Items</b>
+                <br /> {{date.totalItems}}
+              </div>
+              <div class="col-auto mb-3">
+                <b>Total Events</b>
+                <br /> {{date.totalEvents}}
+              </div>
+              <div class="col-auto mb-3">
+                <b>Total Games</b>
+                <br /> {{date.totalGames}}
+              </div>
+              <div class="col-auto mb-3">
+                <b>Total Matches</b>
+                <br /> {{date.totalMatches}}
+              </div>
+            </div>
+            <div class="card bg-secondary mb-2 text-white" ng-repeat="game in date.games">
+              <div class="card-header text-center">
+                Game ({{game.gameType}}) - {{game.gameDate | date:'mediumTime'}}
+                <br/> {{game.venue.name}}
+              </div>
+              <div class="card-body">
+                <div class="row text-center d-flex justify-content-center">
+                  <div class="col-auto mb-3">
+                    <b>Total Items</b>
+                    <br /> {{game.gameDate | date}}
+                  </div>
+                  <div class="col-auto mb-3">
+                    <b>Abstract Game State</b>
+                    <br /> {{game.status.abstractGameState}}
+                  </div>
+                  <div class="col-auto mb-3">
+                    <b>Detailed State</b>
+                    <br /> {{game.status.detailedState}}
+                  </div>
+                  <div class="col-auto mb-3">
+                    <b>Start Time TBD</b>
+                    <br /> {{game.status.startTimeTBD}}
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col">
+                    <div class="card bg-success text-white">
+                      <div class="card-header text-center">
+                        Home Team
+                      </div>
+                      <div class="card-body text-center">
+                        <h5>{{game.teams.home.team.name}}</h5>
+                        <h6>Score: {{game.teams.home.score}}</h6>
+
+                        <div class="card text-dark text-center">
+                          <div class="card-body">
+                            <h5 class="card-title">League Record</h5>
+                            <div class="row text-center d-flex justify-content-center">
+                              <div class="col-auto mb-3">
+                                <b>Wins</b>
+                                <br /> {{game.teams.home.leagueRecord.wins}}
+                              </div>
+                              <div class="col-auto mb-3">
+                                <b>Losses</b>
+                                <br /> {{game.teams.home.leagueRecord.losses}}
+                              </div>
+                              <div class="col-auto mb-3">
+                                <b>OT</b>
+                                <br /> {{game.teams.home.leagueRecord.ot}}
+                              </div>
+                              <div class="col-auto mb-3">
+                                <b>Type</b>
+                                <br /> {{game.teams.home.leagueRecord.type}}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="card bg-danger text-white">
+                      <div class="card-header text-center">
+                        Away Team
+                      </div>
+                      <div class="card-body text-center">
+                        <h5>{{game.teams.away.team.name}}</h5>
+                        <h6>Score: {{game.teams.away.score}}</h6>
+
+                        <div class="card text-dark text-center">
+                          <div class="card-body">
+                            <h5 class="card-title">League Record</h5>
+                            <div class="row text-center d-flex justify-content-center">
+                              <div class="col-auto mb-3">
+                                <b>Wins</b>
+                                <br /> {{game.teams.away.leagueRecord.wins}}
+                              </div>
+                              <div class="col-auto mb-3">
+                                <b>Losses</b>
+                                <br /> {{game.teams.away.leagueRecord.losses}}
+                              </div>
+                              <div class="col-auto mb-3">
+                                <b>OT</b>
+                                <br /> {{game.teams.away.leagueRecord.ot}}
+                              </div>
+                              <div class="col-auto mb-3">
+                                <b>Type</b>
+                                <br /> {{game.teams.away.leagueRecord.type}}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane active" id="Stats">
+        <div class="">
+          <input ng-model="Search.Name" class="form-control my-2" placeholder="Team Name...">
+          <div class="table-responsive">
+            <table class="table">
+              <tr style="user-select:none; cursor:pointer">
+                <th ng-click="OrderBy('ID')">
+                  ID
+                  <span ng-show="Order.PropertyName === 'ID' && Order.Reverse">
+                    <i class="fas fa-sort-alpha-up"></i>
+                </span>
+                  <span ng-show="Order.PropertyName === 'ID' && !Order.Reverse ">
+                    <i class="fas fa-sort-alpha-down"></i>
+                </span>
+                </th>
+                <th ng-click="OrderBy('Name')">
+                  Name
+                  <span ng-show="Order.PropertyName === 'Name' && Order.Reverse">
+                    <i class="fas fa-sort-alpha-up"></i>
+                </span>
+                  <span ng-show="Order.PropertyName === 'Name' && !Order.Reverse ">
+                    <i class="fas fa-sort-alpha-down"></i>
+                </span>
+                </th>
+                <th ng-click="OrderBy('Type')">
+                  Type
+                  <span ng-show="Order.PropertyName === 'Type' && Order.Reverse">
+                    <i class="fas fa-sort-alpha-up"></i>
+                </span>
+                  <span ng-show="Order.PropertyName === 'Type' && !Order.Reverse ">
+                    <i class="fas fa-sort-alpha-down"></i>
+                </span>
+                </th>
+                <th ng-click="OrderBy('Wins')">
+                  Wins
+                  <span ng-show="Order.PropertyName === 'Wins' && Order.Reverse">
+                    <i class="fas fa-sort-numeric-up"></i>
+                </span>
+                  <span ng-show="Order.PropertyName === 'Wins' && !Order.Reverse ">
+                    <i class="fas fa-sort-numeric-down"></i>
+                </span>
+                </th>
+                <th ng-click="OrderBy('Losses')">
+                  Losses
+                  <span ng-show="Order.PropertyName === 'Losses' && Order.Reverse">
+                    <i class="fas fa-sort-numeric-up"></i>
+                </span>
+                  <span ng-show="Order.PropertyName === 'Losses' && !Order.Reverse ">
+                    <i class="fas fa-sort-numeric-down"></i>
+                </span>
+                </th>
+                <th ng-click="OrderBy('Score')">
+                  Score
+                  <span ng-show="Order.PropertyName === 'Score' && Order.Reverse">
+                    <i class="fas fa-sort-numeric-up"></i>
+                </span>
+                  <span ng-show="Order.PropertyName === 'Score' && !Order.Reverse ">
+                    <i class="fas fa-sort-numeric-down"></i>
+                </span>
+                </th>
+                <th ng-click="OrderBy('TotalGames')">
+                  Scheduled Games
+                  <span ng-show="Order.PropertyName === 'TotalGames' && Order.Reverse">
+                    <i class="fas fa-sort-numeric-up"></i>
+                  </span>
+                  <span ng-show="Order.PropertyName === 'TotalGames' && !Order.Reverse ">
+                    <i class="fas fa-sort-numeric-down"></i>
+                  </span>
+                </th>
+                <th ng-click="OrderBy('HomeGames')">
+                  Home Games
+                  <span ng-show="Order.PropertyName === 'HomeGames' && Order.Reverse">
+                    <i class="fas fa-sort-numeric-up"></i>
+                  </span>
+                  <span ng-show="Order.PropertyName === 'HomeGames' && !Order.Reverse ">
+                    <i class="fas fa-sort-numeric-down"></i>
+                  </span>
+                </th>
+                <th ng-click="OrderBy('AwayGames')">
+                  Away Games
+                  <span ng-show="Order.PropertyName === 'AwayGames' && Order.Reverse">
+                    <i class="fas fa-sort-numeric-up"></i>
+                  </span>
+                  <span ng-show="Order.PropertyName === 'AwayGames' && !Order.Reverse ">
+                    <i class="fas fa-sort-numeric-down"></i>
+                  </span>
+                </th>
+              </tr>
+              <tr ng-repeat="team in Teams | filter: Search | orderBy: Order.PropertyName:Order.Reverse">
+                <td>
+                  {{team.ID}}
+                </td>
+                <td>
+                  {{team.Name}}
+                </td>
+                <td>
+                  {{team.Type}}
+                </td>
+                <td>
+                  {{team.Wins}}
+                </td>
+                <td>
+                  {{team.Losses}}
+                </td>
+                <td>
+                  {{team.Score}}
+                </td>
+                <td>
+                  {{team.TotalGames}}
+                </td>
+                <td>
+                  {{team.HomeGames}}
+                </td>
+                <td>
+                  {{team.AwayGames}}
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://code.angularjs.org/1.7.0/angular.min.js"></script>
+  <script src="script.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+  <script>
+    angular.module('plunker', []).controller('MainCtrl', function($scope, $filter, $http) {
+      $scope.data = {};
+
+      var Teams = [];
+
+      $scope.Teams = Teams;
+      $scope.OrderBy = OrderBy;
+      $scope.GetData = GetData;
+      $scope.ProcessData = ProcessData;
+
+      $scope.Order = {
+        PropertyName: 'TotalGames',
+        Reverse: true
+      };
+
+
+      function OrderBy(propertyName) {
+        $scope.Order.Reverse = ($scope.Order.PropertyName === propertyName) ? !$scope.Order.Reverse : false;
+        $scope.Order.PropertyName = propertyName;
+      }
+
+      function GetData() {
+        $scope.data = {};
+        $scope.Teams = [];
+
+        $http({
+          method: 'GET',
+          url: 'https://statsapi.web.nhl.com/api/v1/schedule',
+          params: {
+            startDate: $filter('date')($scope.FromDate, 'yyyy-MM-dd'),
+            endDate: $filter('date')($scope.ToDate, 'yyyy-MM-dd')
+          }
+        }).then(
+          function success(response) {
+            $scope.data = response.data;
+            ProcessData();
+          },
+          function error(response) {
+            console.log('ERROR', response);
+          });
+
+      }
+
+      function ProcessData() {
+        console.log('processing', $scope.data);
+        $scope.data.dates.forEach(function(date) {
+          date.games.forEach(function(game) {
+            if ($filter('filter')($scope.Teams, {
+                ID: game.teams.away.team.id
+              }, true).length == 0) {
+              Team = {
+                ID: game.teams.away.team.id,
+                Name: game.teams.away.team.name,
+                Wins: game.teams.away.leagueRecord.wins,
+                Losses: game.teams.away.leagueRecord.losses,
+                OT: game.teams.away.leagueRecord.ot,
+                Type: game.teams.away.leagueRecord.type,
+                Score: game.teams.away.score,
+                HomeGames: 0,
+                AwayGames: 1,
+                TotalGames: 1
+              };
+              $scope.Teams.push(Team);
+            } else {
+              var Team = $filter('filter')($scope.Teams, {
+                ID: game.teams.away.team.id
+              }, true)[0];
+              Team.TotalGames += 1;
+              Team.AwayGames += 1;
+            }
+            if ($filter('filter')($scope.Teams, {
+                ID: game.teams.home.team.id
+              }, true).length == 0) {
+              Team = {
+                ID: game.teams.home.team.id,
+                Name: game.teams.home.team.name,
+                Wins: game.teams.home.leagueRecord.wins,
+                Losses: game.teams.home.leagueRecord.losses,
+                OT: game.teams.home.leagueRecord.ot,
+                Type: game.teams.home.leagueRecord.type,
+                Score: game.teams.home.score,
+                HomeGames: 1,
+                AwayGames: 0,
+                TotalGames: 1
+              };
+              $scope.Teams.push(Team);
+            } else {
+              var Team = $filter('filter')($scope.Teams, {
+                ID: game.teams.home.team.id
+              }, true)[0];
+              Team.TotalGames += 1;
+              Team.HomeGames += 1;
+            }
+          })
+        });
+      }
+
+    });
+  </script>
+</body>
+
+</html>

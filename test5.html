@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js" type="text/javascript"></script>
+  </head>
+  <body>
+    <script>
+
+      $.getJSON('https://statsapi.web.nhl.com/api/v1/schedule?startDate=2018-12-05&endDate=2018-12-09',function(data){
+      console.log(data);
+
+    //   var obj = JSON.parse(data);
+    //   console.log(obj);
+      // alert(data[0]);
+      // copyright = data.copyright;
+      // alert(copyright);
+
+      // function getByKey(key) {
+          var found = null;
+          var output = '<ul>';
+          for (var i = 0; i < data.length; i++) {
+              var element = data[i];
+              console.log('test');
+              if (element.Key == "name") {
+                 found = element;
+             }
+             output += '<li>'+ found+ '</li>';
+             output += '</ul>';
+             $('#update').html(output);
+console.log(output);
+return found;
+          }
+console.log('test3');
+console.log(output);
+          return found;
+          output += '<li>'+ found+ '</li>';
+          output += '</ul>';
+          $('#update').html(output);
+          console.log(output);
+    //  }
+
+//       var output = '<ul>';
+//       $.each(data.dates[0].games[0].teams.away.team, function(key,val){
+//         output += '<li>'+ key + ": " + val+ '</li>';
+//
+//
+// });
+
+//         $.each(data.games, function(key,val){
+//           output += '<li>'+ key + ": " + val+ '</li>';
+//
+//
+// });
+
+
+      // output += '</ul>';
+      // $('#update').html(output);
+
+
+
+
+      });
+      
+</script>
+
+<div id="update"></div>
+
+  </body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <script>
+      var requestURL = 'https://statsapi.web.nhl.com/api/v1/schedule?startDate=2018-12-05&endDate=2018-12-09';
+      var request = new XMLHttpRequest();
+      request.open('GET', requestURL);
+      request.responseType = '';
+      request.send();
+      request.onreadystatechange= processRequest;
+
+function processRequest(e) {
+//var response = JSON.parse(request.response);
+//var response = JSON.parse();
+// console.log(request.response.totalGames);
+showTeams(request);
+}
+
+request.open("GET", requestURL, true);
+request.send();
+// Function that formats the string with HTML tags, then outputs the result
+function showTeams(data) {
+    var output = "<ul>"; // Open list
+    var i;
+
+    // Loop through the artists, and add them as list items
+    for (var i in data.copyright) {
+        //output += "<li>" + data.dates[i].games;
+          output += "<li>" + data[i].copyright;
+    }
+
+    output += "</ul>"; // Close list
+
+    // Output the data to the "artistlist" element
+    document.getElementById("testList").innerHTML = output;
+  console.log(output);
+}
+      </script>
+      <div id="testList"></div>
+  </body>
+</html>

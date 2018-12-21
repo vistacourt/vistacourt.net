@@ -1,0 +1,2048 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>NHL Data</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+</head>
+
+<body ng-app="plunker" ng-cloak="">
+  <div ng-controller="MainCtrl">
+    <h1 class="text-center">NHL Data</h1>
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#Overview">Overview</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active" data-toggle="tab" href="#Stats">Stats</a>
+      </li>
+    </ul>
+    <div class="tab-content">
+      <div class="tab-pane container fade" id="Overview">
+        <div class="row text-center d-flex justify-content-center mt-1">
+          <div class="col-auto mb-3">
+            <b>Total Items</b>
+            <br /> {{data.totalItems}}
+          </div>
+          <div class="col-auto mb-3">
+            <b>Total Events</b>
+            <br /> {{data.totalEvents}}
+          </div>
+          <div class="col-auto mb-3">
+            <b>Total Games</b>
+            <br /> {{data.totalGames}}
+          </div>
+          <div class="col-auto mb-3">
+            <b>Total Matches</b>
+            <br /> {{data.totalMatches}}
+          </div>
+          <div class="col-auto mb-3">
+            <b>Wait</b>
+            <br /> {{data.wait}}
+          </div>
+        </div>
+        <div class="card bg-info text-white mb-2" ng-repeat="date in data.dates">
+          <div class="card-header text-center d-flex justify-content-center">
+            {{date.date | date:'fullDate'}}
+          </div>
+          <div class="card-body">
+            <div class="row text-center  d-flex justify-content-center">
+              <div class="col-auto mb-3">
+                <b>Total Items</b>
+                <br /> {{date.totalItems}}
+              </div>
+              <div class="col-auto mb-3">
+                <b>Total Events</b>
+                <br /> {{date.totalEvents}}
+              </div>
+              <div class="col-auto mb-3">
+                <b>Total Games</b>
+                <br /> {{date.totalGames}}
+              </div>
+              <div class="col-auto mb-3">
+                <b>Total Matches</b>
+                <br /> {{date.totalMatches}}
+              </div>
+            </div>
+            <div class="card bg-secondary mb-2 text-white" ng-repeat="game in date.games">
+              <div class="card-header text-center">
+                Game ({{game.gameType}}) - {{game.gameDate | date:'mediumTime'}}
+                <br/> {{game.venue.name}}
+              </div>
+              <div class="card-body">
+                <div class="row text-center d-flex justify-content-center">
+                  <div class="col-auto mb-3">
+                    <b>Total Items</b>
+                    <br /> {{game.gameDate | date}}
+                  </div>
+                  <div class="col-auto mb-3">
+                    <b>Abstract Game State</b>
+                    <br /> {{game.status.abstractGameState}}
+                  </div>
+                  <div class="col-auto mb-3">
+                    <b>Detailed State</b>
+                    <br /> {{game.status.detailedState}}
+                  </div>
+                  <div class="col-auto mb-3">
+                    <b>Start Time TBD</b>
+                    <br /> {{game.status.startTimeTBD}}
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col">
+                    <div class="card bg-success text-white">
+                      <div class="card-header text-center">
+                        Home Team
+                      </div>
+                      <div class="card-body text-center">
+                        <h5>{{game.teams.home.team.name}}</h5>
+                        <h6>Score: {{game.teams.home.score}}</h6>
+
+                        <div class="card text-dark text-center">
+                          <div class="card-body">
+                            <h5 class="card-title">League Record</h5>
+                            <div class="row text-center d-flex justify-content-center">
+                              <div class="col-auto mb-3">
+                                <b>Wins</b>
+                                <br /> {{game.teams.home.leagueRecord.wins}}
+                              </div>
+                              <div class="col-auto mb-3">
+                                <b>Losses</b>
+                                <br /> {{game.teams.home.leagueRecord.losses}}
+                              </div>
+                              <div class="col-auto mb-3">
+                                <b>OT</b>
+                                <br /> {{game.teams.home.leagueRecord.ot}}
+                              </div>
+                              <div class="col-auto mb-3">
+                                <b>Type</b>
+                                <br /> {{game.teams.home.leagueRecord.type}}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="card bg-danger text-white">
+                      <div class="card-header text-center">
+                        Away Team
+                      </div>
+                      <div class="card-body text-center">
+                        <h5>{{game.teams.away.team.name}}</h5>
+                        <h6>Score: {{game.teams.away.score}}</h6>
+
+                        <div class="card text-dark text-center">
+                          <div class="card-body">
+                            <h5 class="card-title">League Record</h5>
+                            <div class="row text-center d-flex justify-content-center">
+                              <div class="col-auto mb-3">
+                                <b>Wins</b>
+                                <br /> {{game.teams.away.leagueRecord.wins}}
+                              </div>
+                              <div class="col-auto mb-3">
+                                <b>Losses</b>
+                                <br /> {{game.teams.away.leagueRecord.losses}}
+                              </div>
+                              <div class="col-auto mb-3">
+                                <b>OT</b>
+                                <br /> {{game.teams.away.leagueRecord.ot}}
+                              </div>
+                              <div class="col-auto mb-3">
+                                <b>Type</b>
+                                <br /> {{game.teams.away.leagueRecord.type}}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane active" id="Stats">
+        <div class="container">
+          <input ng-model="Search.Name" class="form-control my-2" placeholder="Team Name...">
+          <div class="table-responsive">
+            <table class="table">
+              <tr style="user-select:none; cursor:pointer">
+                <th ng-click="OrderBy('ID')">
+                  ID
+                  <span ng-show="Order.PropertyName === 'ID' && Order.Reverse">
+                    <i class="fas fa-sort-alpha-up"></i>
+                </span>
+                  <span ng-show="Order.PropertyName === 'ID' && !Order.Reverse ">
+                    <i class="fas fa-sort-alpha-down"></i>
+                </span>
+                </th>
+                <th ng-click="OrderBy('Name')">
+                  Name
+                  <span ng-show="Order.PropertyName === 'Name' && Order.Reverse">
+                    <i class="fas fa-sort-alpha-up"></i>
+                </span>
+                  <span ng-show="Order.PropertyName === 'Name' && !Order.Reverse ">
+                    <i class="fas fa-sort-alpha-down"></i>
+                </span>
+                </th>
+                <th ng-click="OrderBy('Type')">
+                  Type
+                  <span ng-show="Order.PropertyName === 'Type' && Order.Reverse">
+                    <i class="fas fa-sort-alpha-up"></i>
+                </span>
+                  <span ng-show="Order.PropertyName === 'Type' && !Order.Reverse ">
+                    <i class="fas fa-sort-alpha-down"></i>
+                </span>
+                </th>
+                <th ng-click="OrderBy('Wins')">
+                  Wins
+                  <span ng-show="Order.PropertyName === 'Wins' && Order.Reverse">
+                    <i class="fas fa-sort-numeric-up"></i>
+                </span>
+                  <span ng-show="Order.PropertyName === 'Wins' && !Order.Reverse ">
+                    <i class="fas fa-sort-numeric-down"></i>
+                </span>
+                </th>
+                <th ng-click="OrderBy('Losses')">
+                  Losses
+                  <span ng-show="Order.PropertyName === 'Losses' && Order.Reverse">
+                    <i class="fas fa-sort-numeric-up"></i>
+                </span>
+                  <span ng-show="Order.PropertyName === 'Losses' && !Order.Reverse ">
+                    <i class="fas fa-sort-numeric-down"></i>
+                </span>
+                </th>
+                <th ng-click="OrderBy('Score')">
+                  Score
+                  <span ng-show="Order.PropertyName === 'Score' && Order.Reverse">
+                    <i class="fas fa-sort-numeric-up"></i>
+                </span>
+                  <span ng-show="Order.PropertyName === 'Score' && !Order.Reverse ">
+                    <i class="fas fa-sort-numeric-down"></i>
+                </span>
+                </th>
+                <th ng-click="OrderBy('TotalGames')">
+                  Scheduled Games
+                  <span ng-show="Order.PropertyName === 'TotalGames' && Order.Reverse">
+                    <i class="fas fa-sort-numeric-up"></i>
+                  </span>
+                  <span ng-show="Order.PropertyName === 'TotalGames' && !Order.Reverse ">
+                    <i class="fas fa-sort-numeric-down"></i>
+                  </span>
+                </th>
+                <th ng-click="OrderBy('HomeGames')">
+                  Home Games
+                  <span ng-show="Order.PropertyName === 'HomeGames' && Order.Reverse">
+                    <i class="fas fa-sort-numeric-up"></i>
+                  </span>
+                  <span ng-show="Order.PropertyName === 'HomeGames' && !Order.Reverse ">
+                    <i class="fas fa-sort-numeric-down"></i>
+                  </span>
+                </th>
+                <th ng-click="OrderBy('AwayGames')">
+                  Away Games
+                  <span ng-show="Order.PropertyName === 'AwayGames' && Order.Reverse">
+                    <i class="fas fa-sort-numeric-up"></i>
+                  </span>
+                  <span ng-show="Order.PropertyName === 'AwayGames' && !Order.Reverse ">
+                    <i class="fas fa-sort-numeric-down"></i>
+                  </span>
+                </th>
+              </tr>
+              <tr ng-repeat="team in Teams | filter: Search | orderBy: Order.PropertyName:Order.Reverse">
+                <td>
+                  {{team.ID}}
+                </td>
+                <td>
+                  {{team.Name}}
+                </td>
+                <td>
+                  {{team.Type}}
+                </td>
+                <td>
+                  {{team.Wins}}
+                </td>
+                <td>
+                  {{team.Losses}}
+                </td>
+                <td>
+                  {{team.Score}}
+                </td>
+                <td>
+                  {{team.TotalGames}}
+                </td>
+                <td>
+                  {{team.HomeGames}}
+                </td>
+                <td>
+                  {{team.AwayGames}}
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://code.angularjs.org/1.7.0/angular.min.js"></script>
+  <script src="script.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+  <script>
+    angular.module('plunker', []).controller('MainCtrl', function($scope, $filter) {
+
+       $scope.data = {};
+       $scope.data = {"$http.get("https://statsapi.web.nhl.com/api/v1/schedule")"};
+
+      var Teams = [];
+
+      $scope.data.dates.forEach(function(date) {
+        date.games.forEach(function(game) {
+          if ($filter('filter')(Teams, {
+              ID: game.teams.away.team.id
+            }, true).length == 0) {
+            Team = {
+              ID: game.teams.away.team.id,
+              Name: game.teams.away.team.name,
+              Wins: game.teams.away.leagueRecord.wins,
+              Losses: game.teams.away.leagueRecord.losses,
+              OT: game.teams.away.leagueRecord.ot,
+              Type: game.teams.away.leagueRecord.type,
+              Score: game.teams.away.score,
+              HomeGames: 0,
+              AwayGames: 1,
+              TotalGames: 1
+            };
+            Teams.push(Team);
+          } else {
+            var Team = $filter('filter')(Teams, {
+              ID: game.teams.away.team.id
+            }, true)[0];
+            Team.TotalGames += 1;
+            Team.AwayGames += 1;
+          }
+          if ($filter('filter')(Teams, {
+              ID: game.teams.home.team.id
+            }, true).length == 0) {
+            Team = {
+              ID: game.teams.home.team.id,
+              Name: game.teams.home.team.name,
+              Wins: game.teams.home.leagueRecord.wins,
+              Losses: game.teams.home.leagueRecord.losses,
+              OT: game.teams.home.leagueRecord.ot,
+              Type: game.teams.home.leagueRecord.type,
+              Score: game.teams.home.score,
+              HomeGames: 1,
+              AwayGames: 0,
+              TotalGames: 1
+            };
+            Teams.push(Team);
+          } else {
+            var Team = $filter('filter')(Teams, {
+              ID: game.teams.home.team.id
+            }, true)[0];
+            Team.TotalGames += 1;
+            Team.HomeGames += 1;
+          }
+        })
+      });
+
+      $scope.Teams = Teams;
+      $scope.OrderBy = OrderBy;
+      $scope.Order = {
+        PropertyName: 'TotalGames',
+        Reverse: true
+      };
+
+      function OrderBy(propertyName) {
+        $scope.Order.Reverse = ($scope.Order.PropertyName === propertyName) ? !$scope.Order.Reverse : false;
+        $scope.Order.PropertyName = propertyName;
+      }
+    });
+  </script>
+</body>
+
+</html>
+
+//   "copyright": "NHL and the NHL Shield are registered trademarks of the National Hockey League. NHL and NHL team marks are the property of the NHL and its teams. © NHL 2018. All Rights Reserved.",
+//   "totalItems": 32,
+//   "totalEvents": 0,
+//   "totalGames": 32,
+//   "totalMatches": 0,
+//   "wait": 10,
+//   "dates": [{
+//     "date": "2018-12-27",
+//     "totalItems": 13,
+//     "totalEvents": 0,
+//     "totalGames": 13,
+//     "totalMatches": 0,
+//     "games": [{
+//       "gamePk": 2018020567,
+//       "link": "/api/v1/game/2018020567/feed/live",
+//       "gameType": "R",
+//       "season": "20182019",
+//       "gameDate": "2018-12-28T00:00:00Z",
+//       "status": {
+//         "abstractGameState": "Preview",
+//         "codedGameState": "1",
+//         "detailedState": "Scheduled",
+//         "statusCode": "1",
+//         "startTimeTBD": false
+//       },
+//       "teams": {
+//         "away": {
+//           "leagueRecord": {
+//             "wins": 11,
+//             "losses": 14,
+//             "ot": 7,
+//             "type": "league"
+//           },
+//           "score": 0,
+//           "team": {
+//             "id": 1,
+//             "name": "New Jersey Devils",
+//             "link": "/api/v1/teams/1"
+//           }
+//         },
+//         "home": {
+//           "leagueRecord": {
+//             "wins": 18,
+//             "losses": 12,
+//             "ot": 4,
+//             "type": "league"
+//           },
+//           "score": 0,
+//           "team": {
+//             "id": 6,
+//             "name": "Boston Bruins",
+//             "link": "/api/v1/teams/6"
+//           }
+//         }
+//       },
+//       "venue": {
+//         "id": 5085,
+//         "name": "TD Garden",
+//         "link": "/api/v1/venues/5085"
+//       },
+//       "content": {
+//         "link": "/api/v1/game/2018020567/content"
+//       }
+//     }, {
+//       "gamePk": 2018020568,
+//       "link": "/api/v1/game/2018020568/feed/live",
+//       "gameType": "R",
+//       "season": "20182019",
+//       "gameDate": "2018-12-28T00:00:00Z",
+//       "status": {
+//         "abstractGameState": "Preview",
+//         "codedGameState": "1",
+//         "detailedState": "Scheduled",
+//         "statusCode": "1",
+//         "startTimeTBD": false
+//       },
+//       "teams": {
+//         "away": {
+//           "leagueRecord": {
+//             "wins": 18,
+//             "losses": 12,
+//             "ot": 3,
+//             "type": "league"
+//           },
+//           "score": 0,
+//           "team": {
+//             "id": 29,
+//             "name": "Columbus Blue Jackets",
+//             "link": "/api/v1/teams/29"
+//           }
+//         },
+//         "home": {
+//           "leagueRecord": {
+//             "wins": 15,
+//             "losses": 13,
+//             "ot": 5,
+//             "type": "league"
+//           },
+//           "score": 0,
+//           "team": {
+//             "id": 3,
+//             "name": "New York Rangers",
+//             "link": "/api/v1/teams/3"
+//           }
+//         }
+//       },
+//       "venue": {
+//         "id": 5054,
+//         "name": "Madison Square Garden",
+//         "link": "/api/v1/venues/5054"
+//       },
+//       "content": {
+//         "link": "/api/v1/game/2018020568/content"
+//       }
+//     }, {
+//       "gamePk": 2018020569,
+//       "link": "/api/v1/game/2018020569/feed/live",
+//       "gameType": "R",
+//       "season": "20182019",
+//       "gameDate": "2018-12-28T00:00:00Z",
+//       "status": {
+//         "abstractGameState": "Preview",
+//         "codedGameState": "1",
+//         "detailedState": "Scheduled",
+//         "statusCode": "1",
+//         "startTimeTBD": false
+//       },
+//       "teams": {
+//         "away": {
+//           "leagueRecord": {
+//             "wins": 14,
+//             "losses": 16,
+//             "ot": 5,
+//             "type": "league"
+//           },
+//           "score": 0,
+//           "team": {
+//             "id": 17,
+//             "name": "Detroit Red Wings",
+//             "link": "/api/v1/teams/17"
+//           }
+//         },
+//         "home": {
+//           "leagueRecord": {
+//             "wins": 16,
+//             "losses": 12,
+//             "ot": 6,
+//             "type": "league"
+//           },
+//           "score": 0,
+//           "team": {
+//             "id": 5,
+//             "name": "Pittsburgh Penguins",
+//             "link": "/api/v1/teams/5"
+//           }
+//         }
+//       },
+//       "venue": {
+//         "id": 5034,
+//         "name": "PPG Paints Arena",
+//         "link": "/api/v1/venues/5034"
+//       },
+//       "content": {
+//         "link": "/api/v1/game/2018020569/content"
+//       }
+//     }, {
+//       "gamePk": 2018020570,
+//       "link": "/api/v1/game/2018020570/feed/live",
+//       "gameType": "R",
+//       "season": "20182019",
+//       "gameDate": "2018-12-28T00:00:00Z",
+//       "status": {
+//         "abstractGameState": "Preview",
+//         "codedGameState": "1",
+//         "detailedState": "Scheduled",
+//         "statusCode": "1",
+//         "startTimeTBD": false
+//       },
+//       "teams": {
+//         "away": {
+//           "leagueRecord": {
+//             "wins": 14,
+//             "losses": 13,
+//             "ot": 5,
+//             "type": "league"
+//           },
+//           "score": 0,
+//           "team": {
+//             "id": 12,
+//             "name": "Carolina Hurricanes",
+//             "link": "/api/v1/teams/12"
+//           }
+//         },
+//         "home": {
+//           "leagueRecord": {
+//             "wins": 20,
+//             "losses": 10,
+//             "ot": 3,
+//             "type": "league"
+//           },
+//           "score": 0,
+//           "team": {
+//             "id": 15,
+//             "name": "Washington Capitals",
+//             "link": "/api/v1/teams/15"
+//           }
+//         }
+//       },
+//       "venue": {
+//         "id": 5094,
+//         "name": "Capital One Arena",
+//         "link": "/api/v1/venues/5094"
+//       },
+//       "content": {
+//         "link": "/api/v1/game/2018020570/content"
+//       }
+//     }, {
+//       "gamePk": 2018020571,
+//       "link": "/api/v1/game/2018020571/feed/live",
+//       "gameType": "R",
+//       "season": "20182019",
+//       "gameDate": "2018-12-28T00:30:00Z",
+//       "status": {
+//         "abstractGameState": "Preview",
+//         "codedGameState": "1",
+//         "detailedState": "Scheduled",
+//         "statusCode": "1",
+//         "startTimeTBD": false
+//       },
+//       "teams": {
+//         "away": {
+//           "leagueRecord": {
+//             "wins": 13,
+//             "losses": 15,
+//             "ot": 4,
+//             "type": "league"
+//           },
+//           "score": 0,
+//           "team": {
+//             "id": 4,
+//             "name": "Philadelphia Flyers",
+//             "link": "/api/v1/teams/4"
+//           }
+//         },
+//         "home": {
+//           "leagueRecord": {
+//             "wins": 26,
+//             "losses": 7,
+//             "ot": 2,
+//             "type": "league"
+//           },
+//           "score": 0,
+//           "team": {
+//             "id": 14,
+//             "name": "Tampa Bay Lightning",
+//             "link": "/api/v1/teams/14"
+//           }
+//         }
+//       },
+//       "venue": {
+//         "id": 5017,
+//         "name": "Amalie Arena",
+//         "link": "/api/v1/venues/5017"
+//       },
+//       "content": {
+//         "link": "/api/v1/game/2018020571/content"
+//       }
+//     }, {
+//       "gamePk": 2018020572,
+//       "link": "/api/v1/game/2018020572/feed/live",
+//       "gameType": "R",
+//       "season": "20182019",
+//       "gameDate": "2018-12-28T01:00:00Z",
+//       "status": {
+//         "abstractGameState": "Preview",
+//         "codedGameState": "1",
+//         "detailedState": "Scheduled",
+//         "statusCode": "1",
+//         "startTimeTBD": false
+//       },
+//       "teams": {
+//         "away": {
+//           "leagueRecord": {
+//             "wins": 20,
+//             "losses": 10,
+//             "ot": 5,
+//             "type": "league"
+//           },
+//           "score": 0,
+//           "team": {
+//             "id": 7,
+//             "name": "Buffalo Sabres",
+//             "link": "/api/v1/teams/7"
+//           }
+//         },
+//         "home": {
+//           "leagueRecord": {
+//             "wins": 13,
+//             "losses": 15,
+//             "ot": 4,
+//             "type": "league"
+//           },
+//           "score": 0,
+//           "team": {
+//             "id": 19,
+//             "name": "St. Louis Blues",
+//             "link": "/api/v1/teams/19"
+//           }
+//         }
+//       },
+//       "venue": {
+//         "id": 5076,
+//         "name": "Enterprise Center",
+//         "link": "/api/v1/venues/5076"
+//       },
+//       "content": {
+//         "link": "/api/v1/game/2018020572/content"
+//       }
+//     }, {
+//       "gamePk": 2018020573,
+//       "link": "/api/v1/game/2018020573/feed/live",
+//       "gameType": "R",
+//       "season": "20182019",
+//       "gameDate": "2018-12-28T01:00:00Z",
+//       "status": {
+//         "abstractGameState": "Preview",
+//         "codedGameState": "1",
+//         "detailedState": "Scheduled",
+//         "statusCode": "1",
+//         "startTimeTBD": false
+//       },
+//       "teams": {
+//         "away": {
+//           "leagueRecord": {
+//             "wins": 17,
+//             "losses": 14,
+//             "ot": 3,
+//             "type": "league"
+//           },
+//           "score": 0,
+//           "team": {
+//             "id": 25,
+//             "name": "Dallas Stars",
+//             "link": "/api/v1/teams/25"
+//           }
+//         },
+//         "home": {
+//           "leagueRecord": {
+//             "wins": 22,
+//             "losses": 11,
+//             "ot": 2,
+//             "type": "league"
+//           },
+//           "score": 0,
+//           "team": {
+//             "id": 18,
+//             "name": "Nashville Predators",
+//             "link": "/api/v1/teams/18"
+//           }
+//         }
+//       },
+//       "venue": {
+//         "id": 5030,
+//         "name": "Bridgestone Arena",
+//         "link": "/api/v1/venues/5030"
+//       },
+//       "content": {
+//         "link": "/api/v1/game/2018020573/content"
+//       }
+//     }, {
+//       "gamePk": 2018020574,
+//       "link": "/api/v1/game/2018020574/feed/live",
+//       "gameType": "R",
+//       "season": "20182019",
+//       "gameDate": "2018-12-28T01:00:00Z",
+//       "status": {
+//         "abstractGameState": "Preview",
+//         "codedGameState": "1",
+//         "detailedState": "Scheduled",
+//         "statusCode": "1",
+//         "startTimeTBD": false
+//       },
+//       "teams": {
+//         "away": {
+//           "leagueRecord": {
+//             "wins": 22,
+//             "losses": 11,
+//             "ot": 2,
+//             "type": "league"
+//           },
+//           "score": 0,
+//           "team": {
+//             "id": 20,
+//             "name": "Calgary Flames",
+//             "link": "/api/v1/teams/20"
+//           }
+//         },
+//         "home": {
+//           "leagueRecord": {
+//             "wins": 22,
+//             "losses": 10,
+//             "ot": 2,
+//             "type": "league"
+//           },
+//           "score": 0,
+//           "team": {
+//             "id": 52,
+//             "name": "Winnipeg Jets",
+//             "link": "/api/v1/teams/52"
+//           }
+//         }
+//       },
+//       "venue": {
+//         "id": 5058,
+//         "name": "Bell MTS Place",
+//         "link": "/api/v1/venues/5058"
+//       },
+//       "content": {
+//         "link": "/api/v1/game/2018020574/content"
+//       }
+//     }, {
+//       "gamePk": 2018020575,
+//       "link": "/api/v1/game/2018020575/feed/live",
+//       "gameType": "R",
+//       "season": "20182019",
+//       "gameDate": "2018-12-28T01:30:00Z",
+//       "status": {
+//         "abstractGameState": "Preview",
+//         "codedGameState": "1",
+//         "detailedState": "Scheduled",
+//         "statusCode": "1",
+//         "startTimeTBD": false
+//       },
+//       "teams": {
+//         "away": {
+//           "leagueRecord": {
+//             "wins": 17,
+//             "losses": 14,
+//             "ot": 2,
+//             "type": "league"
+//           },
+//           "score": 0,
+//           "team": {
+//             "id": 30,
+//             "name": "Minnesota Wild",
+//             "link": "/api/v1/teams/30"
+//           }
+//         },
+//         "home": {
+//           "leagueRecord": {
+//             "wins": 11,
+//             "losses": 19,
+//             "ot": 6,
+//             "type": "league"
+//           },
+//           "score": 0,
+//           "team": {
+//             "id": 16,
+//             "name": "Chicago Blackhawks",
+//             "link": "/api/v1/teams/16"
+//           }
+//         }
+//       },
+//       "venue": {
+//         "id": 5092,
+//         "name": "United Center",
+//         "link": "/api/v1/venues/5092"
+//       },
+//       "content": {
+//         "link": "/api/v1/game/2018020575/content"
+//       }
+//     }, {
+//       "gamePk": 2018020576,
+//       "link": "/api/v1/game/2018020576/feed/live",
+//       "gameType": "R",
+//       "season": "20182019",
+//       "gameDate": "2018-12-28T02:00:00Z",
+//       "status": {
+//         "abstractGameState": "Preview",
+//         "codedGameState": "1",
+//         "detailedState": "Scheduled",
+//         "statusCode": "1",
+//         "startTimeTBD": false
+//       },
+//       "teams": {
+//         "away": {
+//           "leagueRecord": {
+//             "wins": 16,
+//             "losses": 17,
+//             "ot": 4,
+//             "type": "league"
+//           },
+//           "score": 0,
+//           "team": {
+//             "id": 23,
+//             "name": "Vancouver Canucks",
+//             "link": "/api/v1/teams/23"
+//           }
+//         },
+//         "home": {
+//           "leagueRecord": {
+//             "wins": 18,
+//             "losses": 14,
+//             "ot": 3,
+//             "type": "league"
+//           },
+//           "score": 0,
+//           "team": {
+//             "id": 22,
+//             "name": "Edmonton Oilers",
+//             "link": "/api/v1/teams/22"
+//           }
+//         }
+//       },
+//       "venue": {
+//         "id": 5100,
+//         "name": "Rogers Place",
+//         "link": "/api/v1/venues/5100"
+//       },
+//       "content": {
+//         "link": "/api/v1/game/2018020576/content"
+//       }
+//     }, {
+//       "gamePk": 2018020577,
+//       "link": "/api/v1/game/2018020577/feed/live",
+//       "gameType": "R",
+//       "season": "20182019",
+//       "gameDate": "2018-12-28T03:00:00Z",
+//       "status": {
+//         "abstractGameState": "Preview",
+//         "codedGameState": "1",
+//         "detailedState": "Scheduled",
+//         "statusCode": "1",
+//         "startTimeTBD": false
+//       },
+//       "teams": {
+//         "away": {
+//           "leagueRecord": {
+//             "wins": 19,
+//             "losses": 10,
+//             "ot": 6,
+//             "type": "league"
+//           },
+//           "score": 0,
+//           "team": {
+//             "id": 21,
+//             "name": "Colorado Avalanche",
+//             "link": "/api/v1/teams/21"
+//           }
+//         },
+//         "home": {
+//           "leagueRecord": {
+//             "wins": 19,
+//             "losses": 15,
+//             "ot": 2,
+//             "type": "league"
+//           },
+//           "score": 0,
+//           "team": {
+//             "id": 54,
+//             "name": "Vegas Golden Knights",
+//             "link": "/api/v1/teams/54"
+//           }
+//         }
+//       },
+//       "venue": {
+//         "id": 5178,
+//         "name": "T-Mobile Arena",
+//         "link": "/api/v1/venues/5178"
+//       },
+//       "content": {
+//         "link": "/api/v1/game/2018020577/content"
+//       }
+//     }, {
+//       "gamePk": 2018020578,
+//       "link": "/api/v1/game/2018020578/feed/live",
+//       "gameType": "R",
+//       "season": "20182019",
+//       "gameDate": "2018-12-28T03:30:00Z",
+//       "status": {
+//         "abstractGameState": "Preview",
+//         "codedGameState": "1",
+//         "detailedState": "Scheduled",
+//         "statusCode": "1",
+//         "startTimeTBD": false
+//       },
+//       "teams": {
+//         "away": {
+//           "leagueRecord": {
+//             "wins": 14,
+//             "losses": 17,
+//             "ot": 2,
+//             "type": "league"
+//           },
+//           "score": 0,
+//           "team": {
+//             "id": 53,
+//             "name": "Arizona Coyotes",
+//             "link": "/api/v1/teams/53"
+//           }
+//         },
+//         "home": {
+//           "leagueRecord": {
+//             "wins": 12,
+//             "losses": 20,
+//             "ot": 3,
+//             "type": "league"
+//           },
+//           "score": 0,
+//           "team": {
+//             "id": 26,
+//             "name": "Los Angeles Kings",
+//             "link": "/api/v1/teams/26"
+//           }
+//         }
+//       },
+//       "venue": {
+//         "name": "STAPLES Center",
+//         "link": "/api/v1/venues/null"
+//       },
+//       "content": {
+//         "link": "/api/v1/game/2018020578/content"
+//       }
+//     }, {
+//       "gamePk": 2018020579,
+//       "link": "/api/v1/game/2018020579/feed/live",
+//       "gameType": "R",
+//       "season": "20182019",
+//       "gameDate": "2018-12-28T03:30:00Z",
+//       "status": {
+//         "abstractGameState": "Preview",
+//         "codedGameState": "1",
+//         "detailedState": "Scheduled",
+//         "statusCode": "1",
+//         "startTimeTBD": false
+//       },
+//       "teams": {
+//         "away": {
+//           "leagueRecord": {
+//             "wins": 19,
+//             "losses": 12,
+//             "ot": 5,
+//             "type": "league"
+//           },
+//           "score": 0,
+//           "team": {
+//             "id": 24,
+//             "name": "Anaheim Ducks",
+//             "link": "/api/v1/teams/24"
+//           }
+//         },
+//         "home": {
+//           "leagueRecord": {
+//             "wins": 19,
+//             "losses": 11,
+//             "ot": 5,
+//             "type": "league"
+//           },
+//           "score": 0,
+//           "team": {
+//             "id": 28,
+//             "name": "San Jose Sharks",
+//             "link": "/api/v1/teams/28"
+//           }
+//         }
+//       },
+//       "venue": {
+//         "name": "SAP Center at San Jose",
+//         "link": "/api/v1/venues/null"
+//       },
+//       "content": {
+//         "link": "/api/v1/game/2018020579/content"
+//       }
+//     }],
+//     "events": [],
+//     "matches": []
+//   }, {
+//     "date": "2018-12-28",
+//     "totalItems": 3,
+//     "totalEvents": 0,
+//     "totalGames": 3,
+//     "totalMatches": 0,
+//     "games": [{
+//       "gamePk": 2018020580,
+//       "link": "/api/v1/game/2018020580/feed/live",
+//       "gameType": "R",
+//       "season": "20182019",
+//       "gameDate": "2018-12-29T00:00:00Z",
+//       "status": {
+//         "abstractGameState": "Preview",
+//         "codedGameState": "1",
+//         "detailedState": "Scheduled",
+//         "statusCode": "1",
+//         "startTimeTBD": false
+//       },
+//       "teams": {
+//         "away": {
+//           "leagueRecord": {
+//             "wins": 17,
+//             "losses": 13,
+//             "ot": 5,
+//             "type": "league"
+//           },
+//           "score": 0,
+//           "team": {
+//             "id": 8,
+//             "name": "Montréal Canadiens",
+//             "link": "/api/v1/teams/8"
+//           }
+//         },
+//         "home": {
+//           "leagueRecord": {
+//             "wins": 13,
+//             "losses": 13,
+//             "ot": 6,
+//             "type": "league"
+//           },
+//           "score": 0,
+//           "team": {
+//             "id": 13,
+//             "name": "Florida Panthers",
+//             "link": "/api/v1/teams/13"
+//           }
+//         }
+//       },
+//       "venue": {
+//         "id": 5027,
+//         "name": "BB&T Center",
+//         "link": "/api/v1/venues/5027"
+//       },
+//       "content": {
+//         "link": "/api/v1/game/2018020580/content"
+//       }
+//     }, {
+//       "gamePk": 2018020581,
+//       "link": "/api/v1/game/2018020581/feed/live",
+//       "gameType": "R",
+//       "season": "20182019",
+//       "gameDate": "2018-12-29T00:00:00Z",
+//       "status": {
+//         "abstractGameState": "Preview",
+//         "codedGameState": "1",
+//         "detailedState": "Scheduled",
+//         "statusCode": "1",
+//         "startTimeTBD": false
+//       },
+//       "teams": {
+//         "away": {
+//           "leagueRecord": {
+//             "wins": 15,
+//             "losses": 16,
+//             "ot": 4,
+//             "type": "league"
+//           },
+//           "score": 0,
+//           "team": {
+//             "id": 9,
+//             "name": "Ottawa Senators",
+//             "link": "/api/v1/teams/9"
+//           }
+//         },
+//         "home": {
+//           "leagueRecord": {
+//             "wins": 17,
+//             "losses": 12,
+//             "ot": 4,
+//             "type": "league"
+//           },
+//           "score": 0,
+//           "team": {
+//             "id": 2,
+//             "name": "New York Islanders",
+//             "link": "/api/v1/teams/2"
+//           }
+//         }
+//       },
+//       "venue": {
+//         "id": 5026,
+//         "name": "Barclays Center",
+//         "link": "/api/v1/venues/5026"
+//       },
+//       "content": {
+//         "link": "/api/v1/game/2018020581/content"
+//       }
+//     }, {
+//       "gamePk": 2018020582,
+//       "link": "/api/v1/game/2018020582/feed/live",
+//       "gameType": "R",
+//       "season": "20182019",
+//       "gameDate": "2018-12-29T00:00:00Z",
+//       "status": {
+//         "abstractGameState": "Preview",
+//         "codedGameState": "1",
+//         "detailedState": "Scheduled",
+//         "statusCode": "1",
+//         "startTimeTBD": false
+//       },
+//       "teams": {
+//         "away": {
+//           "leagueRecord": {
+//             "wins": 22,
+//             "losses": 10,
+//             "ot": 2,
+//             "type": "league"
+//           },
+//           "score": 0,
+//           "team": {
+//             "id": 10,
+//             "name": "Toronto Maple Leafs",
+//             "link": "/api/v1/teams/10"
+//           }
+//         },
+//         "home": {
+//           "leagueRecord": {
+//             "wins": 18,
+//             "losses": 12,
+//             "ot": 3,
+//             "type": "league"
+//           },
+//           "score": 0,
+//           "team": {
+//             "id": 29,
+//             "name": "Columbus Blue Jackets",
+//             "link": "/api/v1/teams/29"
+//           }
+//         }
+//       },
+//       "venue": {
+//         "id": 5059,
+//         "name": "Nationwide Arena",
+//         "link": "/api/v1/venues/5059"
+//       },
+//       "content": {
+//         "link": "/api/v1/game/2018020582/content"
+//       }
+//     }],
+//     "events": [],
+//     "matches": []
+//   }, {
+//     "date": "2018-12-29",
+//     "totalItems": 15,
+//     "totalEvents": 0,
+//     "totalGames": 15,
+//     "totalMatches": 0,
+//     "games": [{
+//       "gamePk": 2018020583,
+//       "link": "/api/v1/game/2018020583/feed/live",
+//       "gameType": "R",
+//       "season": "20182019",
+//       "gameDate": "2018-12-29T18:00:00Z",
+//       "status": {
+//         "abstractGameState": "Preview",
+//         "codedGameState": "1",
+//         "detailedState": "Scheduled",
+//         "statusCode": "1",
+//         "startTimeTBD": false
+//       },
+//       "teams": {
+//         "away": {
+//           "leagueRecord": {
+//             "wins": 14,
+//             "losses": 13,
+//             "ot": 5,
+//             "type": "league"
+//           },
+//           "score": 0,
+//           "team": {
+//             "id": 12,
+//             "name": "Carolina Hurricanes",
+//             "link": "/api/v1/teams/12"
+//           }
+//         },
+//         "home": {
+//           "leagueRecord": {
+//             "wins": 11,
+//             "losses": 14,
+//             "ot": 7,
+//             "type": "league"
+//           },
+//           "score": 0,
+//           "team": {
+//             "id": 1,
+//             "name": "New Jersey Devils",
+//             "link": "/api/v1/teams/1"
+//           }
+//         }
+//       },
+//       "venue": {
+//         "name": "Prudential Center",
+//         "link": "/api/v1/venues/null"
+//       },
+//       "content": {
+//         "link": "/api/v1/game/2018020583/content"
+//       }
+//     }, {
+//       "gamePk": 2018020586,
+//       "link": "/api/v1/game/2018020586/feed/live",
+//       "gameType": "R",
+//       "season": "20182019",
+//       "gameDate": "2018-12-29T21:00:00Z",
+//       "status": {
+//         "abstractGameState": "Preview",
+//         "codedGameState": "1",
+//         "detailedState": "Scheduled",
+//         "statusCode": "1",
+//         "startTimeTBD": false
+//       },
+//       "teams": {
+//         "away": {
+//           "leagueRecord": {
+//             "wins": 19,
+//             "losses": 15,
+//             "ot": 2,
+//             "type": "league"
+//           },
+//           "score": 0,
+//           "team": {
+//             "id": 54,
+//             "name": "Vegas Golden Knights",
+//             "link": "/api/v1/teams/54"
+//           }
+//         },
+//         "home": {
+//           "leagueRecord": {
+//             "wins": 12,
+//             "losses": 20,
+//             "ot": 3,
+//             "type": "league"
+//           },
+//           "score": 0,
+//           "team": {
+//             "id": 26,
+//             "name": "Los Angeles Kings",
+//             "link": "/api/v1/teams/26"
+//           }
+//         }
+//       },
+//       "venue": {
+//         "name": "STAPLES Center",
+//         "link": "/api/v1/venues/null"
+//       },
+//       "content": {
+//         "link": "/api/v1/game/2018020586/content"
+//       }
+//     }, {
+//       "gamePk": 2018020585,
+//       "link": "/api/v1/game/2018020585/feed/live",
+//       "gameType": "R",
+//       "season": "20182019",
+//       "gameDate": "2018-12-29T21:00:00Z",
+//       "status": {
+//         "abstractGameState": "Preview",
+//         "codedGameState": "1",
+//         "detailedState": "Scheduled",
+//         "statusCode": "1",
+//         "startTimeTBD": false
+//       },
+//       "teams": {
+//         "away": {
+//           "leagueRecord": {
+//             "wins": 19,
+//             "losses": 11,
+//             "ot": 5,
+//             "type": "league"
+//           },
+//           "score": 0,
+//           "team": {
+//             "id": 28,
+//             "name": "San Jose Sharks",
+//             "link": "/api/v1/teams/28"
+//           }
+//         },
+//         "home": {
+//           "leagueRecord": {
+//             "wins": 18,
+//             "losses": 14,
+//             "ot": 3,
+//             "type": "league"
+//           },
+//           "score": 0,
+//           "team": {
+//             "id": 22,
+//             "name": "Edmonton Oilers",
+//             "link": "/api/v1/teams/22"
+//           }
+//         }
+//       },
+//       "venue": {
+//         "id": 5100,
+//         "name": "Rogers Place",
+//         "link": "/api/v1/venues/5100"
+//       },
+//       "content": {
+//         "link": "/api/v1/game/2018020585/content"
+//       }
+//     }, {
+//       "gamePk": 2018020584,
+//       "link": "/api/v1/game/2018020584/feed/live",
+//       "gameType": "R",
+//       "season": "20182019",
+//       "gameDate": "2018-12-29T21:00:00Z",
+//       "status": {
+//         "abstractGameState": "Preview",
+//         "codedGameState": "1",
+//         "detailedState": "Scheduled",
+//         "statusCode": "1",
+//         "startTimeTBD": false
+//       },
+//       "teams": {
+//         "away": {
+//           "leagueRecord": {
+//             "wins": 17,
+//             "losses": 14,
+//             "ot": 2,
+//             "type": "league"
+//           },
+//           "score": 0,
+//           "team": {
+//             "id": 30,
+//             "name": "Minnesota Wild",
+//             "link": "/api/v1/teams/30"
+//           }
+//         },
+//         "home": {
+//           "leagueRecord": {
+//             "wins": 22,
+//             "losses": 10,
+//             "ot": 2,
+//             "type": "league"
+//           },
+//           "score": 0,
+//           "team": {
+//             "id": 52,
+//             "name": "Winnipeg Jets",
+//             "link": "/api/v1/teams/52"
+//           }
+//         }
+//       },
+//       "venue": {
+//         "id": 5058,
+//         "name": "Bell MTS Place",
+//         "link": "/api/v1/venues/5058"
+//       },
+//       "content": {
+//         "link": "/api/v1/game/2018020584/content"
+//       }
+//     }, {
+//       "gamePk": 2018020587,
+//       "link": "/api/v1/game/2018020587/feed/live",
+//       "gameType": "R",
+//       "season": "20182019",
+//       "gameDate": "2018-12-30T00:00:00Z",
+//       "status": {
+//         "abstractGameState": "Preview",
+//         "codedGameState": "1",
+//         "detailedState": "Scheduled",
+//         "statusCode": "1",
+//         "startTimeTBD": false
+//       },
+//       "teams": {
+//         "away": {
+//           "leagueRecord": {
+//             "wins": 18,
+//             "losses": 12,
+//             "ot": 4,
+//             "type": "league"
+//           },
+//           "score": 0,
+//           "team": {
+//             "id": 6,
+//             "name": "Boston Bruins",
+//             "link": "/api/v1/teams/6"
+//           }
+//         },
+//         "home": {
+//           "leagueRecord": {
+//             "wins": 20,
+//             "losses": 10,
+//             "ot": 5,
+//             "type": "league"
+//           },
+//           "score": 0,
+//           "team": {
+//             "id": 7,
+//             "name": "Buffalo Sabres",
+//             "link": "/api/v1/teams/7"
+//           }
+//         }
+//       },
+//       "venue": {
+//         "id": 5039,
+//         "name": "KeyBank Center",
+//         "link": "/api/v1/venues/5039"
+//       },
+//       "content": {
+//         "link": "/api/v1/game/2018020587/content"
+//       }
+//     }, {
+//       "gamePk": 2018020588,
+//       "link": "/api/v1/game/2018020588/feed/live",
+//       "gameType": "R",
+//       "season": "20182019",
+//       "gameDate": "2018-12-30T00:00:00Z",
+//       "status": {
+//         "abstractGameState": "Preview",
+//         "codedGameState": "1",
+//         "detailedState": "Scheduled",
+//         "statusCode": "1",
+//         "startTimeTBD": false
+//       },
+//       "teams": {
+//         "away": {
+//           "leagueRecord": {
+//             "wins": 17,
+//             "losses": 12,
+//             "ot": 4,
+//             "type": "league"
+//           },
+//           "score": 0,
+//           "team": {
+//             "id": 2,
+//             "name": "New York Islanders",
+//             "link": "/api/v1/teams/2"
+//           }
+//         },
+//         "home": {
+//           "leagueRecord": {
+//             "wins": 22,
+//             "losses": 10,
+//             "ot": 2,
+//             "type": "league"
+//           },
+//           "score": 0,
+//           "team": {
+//             "id": 10,
+//             "name": "Toronto Maple Leafs",
+//             "link": "/api/v1/teams/10"
+//           }
+//         }
+//       },
+//       "venue": {
+//         "name": "Scotiabank Arena",
+//         "link": "/api/v1/venues/null"
+//       },
+//       "content": {
+//         "link": "/api/v1/game/2018020588/content"
+//       }
+//     }, {
+//       "gamePk": 2018020589,
+//       "link": "/api/v1/game/2018020589/feed/live",
+//       "gameType": "R",
+//       "season": "20182019",
+//       "gameDate": "2018-12-30T00:00:00Z",
+//       "status": {
+//         "abstractGameState": "Preview",
+//         "codedGameState": "1",
+//         "detailedState": "Scheduled",
+//         "statusCode": "1",
+//         "startTimeTBD": false
+//       },
+//       "teams": {
+//         "away": {
+//           "leagueRecord": {
+//             "wins": 20,
+//             "losses": 10,
+//             "ot": 3,
+//             "type": "league"
+//           },
+//           "score": 0,
+//           "team": {
+//             "id": 15,
+//             "name": "Washington Capitals",
+//             "link": "/api/v1/teams/15"
+//           }
+//         },
+//         "home": {
+//           "leagueRecord": {
+//             "wins": 15,
+//             "losses": 16,
+//             "ot": 4,
+//             "type": "league"
+//           },
+//           "score": 0,
+//           "team": {
+//             "id": 9,
+//             "name": "Ottawa Senators",
+//             "link": "/api/v1/teams/9"
+//           }
+//         }
+//       },
+//       "venue": {
+//         "id": 5031,
+//         "name": "Canadian Tire Centre",
+//         "link": "/api/v1/venues/5031"
+//       },
+//       "content": {
+//         "link": "/api/v1/game/2018020589/content"
+//       }
+//     }, {
+//       "gamePk": 2018020590,
+//       "link": "/api/v1/game/2018020590/feed/live",
+//       "gameType": "R",
+//       "season": "20182019",
+//       "gameDate": "2018-12-30T00:00:00Z",
+//       "status": {
+//         "abstractGameState": "Preview",
+//         "codedGameState": "1",
+//         "detailedState": "Scheduled",
+//         "statusCode": "1",
+//         "startTimeTBD": false
+//       },
+//       "teams": {
+//         "away": {
+//           "leagueRecord": {
+//             "wins": 17,
+//             "losses": 13,
+//             "ot": 5,
+//             "type": "league"
+//           },
+//           "score": 0,
+//           "team": {
+//             "id": 8,
+//             "name": "Montréal Canadiens",
+//             "link": "/api/v1/teams/8"
+//           }
+//         },
+//         "home": {
+//           "leagueRecord": {
+//             "wins": 26,
+//             "losses": 7,
+//             "ot": 2,
+//             "type": "league"
+//           },
+//           "score": 0,
+//           "team": {
+//             "id": 14,
+//             "name": "Tampa Bay Lightning",
+//             "link": "/api/v1/teams/14"
+//           }
+//         }
+//       },
+//       "venue": {
+//         "id": 5017,
+//         "name": "Amalie Arena",
+//         "link": "/api/v1/venues/5017"
+//       },
+//       "content": {
+//         "link": "/api/v1/game/2018020590/content"
+//       }
+//     }, {
+//       "gamePk": 2018020591,
+//       "link": "/api/v1/game/2018020591/feed/live",
+//       "gameType": "R",
+//       "season": "20182019",
+//       "gameDate": "2018-12-30T00:00:00Z",
+//       "status": {
+//         "abstractGameState": "Preview",
+//         "codedGameState": "1",
+//         "detailedState": "Scheduled",
+//         "statusCode": "1",
+//         "startTimeTBD": false
+//       },
+//       "teams": {
+//         "away": {
+//           "leagueRecord": {
+//             "wins": 13,
+//             "losses": 15,
+//             "ot": 4,
+//             "type": "league"
+//           },
+//           "score": 0,
+//           "team": {
+//             "id": 4,
+//             "name": "Philadelphia Flyers",
+//             "link": "/api/v1/teams/4"
+//           }
+//         },
+//         "home": {
+//           "leagueRecord": {
+//             "wins": 13,
+//             "losses": 13,
+//             "ot": 6,
+//             "type": "league"
+//           },
+//           "score": 0,
+//           "team": {
+//             "id": 13,
+//             "name": "Florida Panthers",
+//             "link": "/api/v1/teams/13"
+//           }
+//         }
+//       },
+//       "venue": {
+//         "id": 5027,
+//         "name": "BB&T Center",
+//         "link": "/api/v1/venues/5027"
+//       },
+//       "content": {
+//         "link": "/api/v1/game/2018020591/content"
+//       }
+//     }, {
+//       "gamePk": 2018020592,
+//       "link": "/api/v1/game/2018020592/feed/live",
+//       "gameType": "R",
+//       "season": "20182019",
+//       "gameDate": "2018-12-30T01:00:00Z",
+//       "status": {
+//         "abstractGameState": "Preview",
+//         "codedGameState": "1",
+//         "detailedState": "Scheduled",
+//         "statusCode": "1",
+//         "startTimeTBD": false
+//       },
+//       "teams": {
+//         "away": {
+//           "leagueRecord": {
+//             "wins": 16,
+//             "losses": 12,
+//             "ot": 6,
+//             "type": "league"
+//           },
+//           "score": 0,
+//           "team": {
+//             "id": 5,
+//             "name": "Pittsburgh Penguins",
+//             "link": "/api/v1/teams/5"
+//           }
+//         },
+//         "home": {
+//           "leagueRecord": {
+//             "wins": 13,
+//             "losses": 15,
+//             "ot": 4,
+//             "type": "league"
+//           },
+//           "score": 0,
+//           "team": {
+//             "id": 19,
+//             "name": "St. Louis Blues",
+//             "link": "/api/v1/teams/19"
+//           }
+//         }
+//       },
+//       "venue": {
+//         "id": 5076,
+//         "name": "Enterprise Center",
+//         "link": "/api/v1/venues/5076"
+//       },
+//       "content": {
+//         "link": "/api/v1/game/2018020592/content"
+//       }
+//     }, {
+//       "gamePk": 2018020593,
+//       "link": "/api/v1/game/2018020593/feed/live",
+//       "gameType": "R",
+//       "season": "20182019",
+//       "gameDate": "2018-12-30T01:00:00Z",
+//       "status": {
+//         "abstractGameState": "Preview",
+//         "codedGameState": "1",
+//         "detailedState": "Scheduled",
+//         "statusCode": "1",
+//         "startTimeTBD": false
+//       },
+//       "teams": {
+//         "away": {
+//           "leagueRecord": {
+//             "wins": 15,
+//             "losses": 13,
+//             "ot": 5,
+//             "type": "league"
+//           },
+//           "score": 0,
+//           "team": {
+//             "id": 3,
+//             "name": "New York Rangers",
+//             "link": "/api/v1/teams/3"
+//           }
+//         },
+//         "home": {
+//           "leagueRecord": {
+//             "wins": 22,
+//             "losses": 11,
+//             "ot": 2,
+//             "type": "league"
+//           },
+//           "score": 0,
+//           "team": {
+//             "id": 18,
+//             "name": "Nashville Predators",
+//             "link": "/api/v1/teams/18"
+//           }
+//         }
+//       },
+//       "venue": {
+//         "id": 5030,
+//         "name": "Bridgestone Arena",
+//         "link": "/api/v1/venues/5030"
+//       },
+//       "content": {
+//         "link": "/api/v1/game/2018020593/content"
+//       }
+//     }, {
+//       "gamePk": 2018020594,
+//       "link": "/api/v1/game/2018020594/feed/live",
+//       "gameType": "R",
+//       "season": "20182019",
+//       "gameDate": "2018-12-30T01:00:00Z",
+//       "status": {
+//         "abstractGameState": "Preview",
+//         "codedGameState": "1",
+//         "detailedState": "Scheduled",
+//         "statusCode": "1",
+//         "startTimeTBD": false
+//       },
+//       "teams": {
+//         "away": {
+//           "leagueRecord": {
+//             "wins": 14,
+//             "losses": 16,
+//             "ot": 5,
+//             "type": "league"
+//           },
+//           "score": 0,
+//           "team": {
+//             "id": 17,
+//             "name": "Detroit Red Wings",
+//             "link": "/api/v1/teams/17"
+//           }
+//         },
+//         "home": {
+//           "leagueRecord": {
+//             "wins": 17,
+//             "losses": 14,
+//             "ot": 3,
+//             "type": "league"
+//           },
+//           "score": 0,
+//           "team": {
+//             "id": 25,
+//             "name": "Dallas Stars",
+//             "link": "/api/v1/teams/25"
+//           }
+//         }
+//       },
+//       "venue": {
+//         "id": 5019,
+//         "name": "American Airlines Center",
+//         "link": "/api/v1/venues/5019"
+//       },
+//       "content": {
+//         "link": "/api/v1/game/2018020594/content"
+//       }
+//     }, {
+//       "gamePk": 2018020595,
+//       "link": "/api/v1/game/2018020595/feed/live",
+//       "gameType": "R",
+//       "season": "20182019",
+//       "gameDate": "2018-12-30T02:00:00Z",
+//       "status": {
+//         "abstractGameState": "Preview",
+//         "codedGameState": "1",
+//         "detailedState": "Scheduled",
+//         "statusCode": "1",
+//         "startTimeTBD": false
+//       },
+//       "teams": {
+//         "away": {
+//           "leagueRecord": {
+//             "wins": 11,
+//             "losses": 19,
+//             "ot": 6,
+//             "type": "league"
+//           },
+//           "score": 0,
+//           "team": {
+//             "id": 16,
+//             "name": "Chicago Blackhawks",
+//             "link": "/api/v1/teams/16"
+//           }
+//         },
+//         "home": {
+//           "leagueRecord": {
+//             "wins": 19,
+//             "losses": 10,
+//             "ot": 6,
+//             "type": "league"
+//           },
+//           "score": 0,
+//           "team": {
+//             "id": 21,
+//             "name": "Colorado Avalanche",
+//             "link": "/api/v1/teams/21"
+//           }
+//         }
+//       },
+//       "venue": {
+//         "id": 5064,
+//         "name": "Pepsi Center",
+//         "link": "/api/v1/venues/5064"
+//       },
+//       "content": {
+//         "link": "/api/v1/game/2018020595/content"
+//       }
+//     }, {
+//       "gamePk": 2018020597,
+//       "link": "/api/v1/game/2018020597/feed/live",
+//       "gameType": "R",
+//       "season": "20182019",
+//       "gameDate": "2018-12-30T03:00:00Z",
+//       "status": {
+//         "abstractGameState": "Preview",
+//         "codedGameState": "1",
+//         "detailedState": "Scheduled",
+//         "statusCode": "1",
+//         "startTimeTBD": false
+//       },
+//       "teams": {
+//         "away": {
+//           "leagueRecord": {
+//             "wins": 14,
+//             "losses": 17,
+//             "ot": 2,
+//             "type": "league"
+//           },
+//           "score": 0,
+//           "team": {
+//             "id": 53,
+//             "name": "Arizona Coyotes",
+//             "link": "/api/v1/teams/53"
+//           }
+//         },
+//         "home": {
+//           "leagueRecord": {
+//             "wins": 19,
+//             "losses": 12,
+//             "ot": 5,
+//             "type": "league"
+//           },
+//           "score": 0,
+//           "team": {
+//             "id": 24,
+//             "name": "Anaheim Ducks",
+//             "link": "/api/v1/teams/24"
+//           }
+//         }
+//       },
+//       "venue": {
+//         "id": 5046,
+//         "name": "Honda Center",
+//         "link": "/api/v1/venues/5046"
+//       },
+//       "content": {
+//         "link": "/api/v1/game/2018020597/content"
+//       }
+//     }, {
+//       "gamePk": 2018020596,
+//       "link": "/api/v1/game/2018020596/feed/live",
+//       "gameType": "R",
+//       "season": "20182019",
+//       "gameDate": "2018-12-30T03:00:00Z",
+//       "status": {
+//         "abstractGameState": "Preview",
+//         "codedGameState": "1",
+//         "detailedState": "Scheduled",
+//         "statusCode": "1",
+//         "startTimeTBD": false
+//       },
+//       "teams": {
+//         "away": {
+//           "leagueRecord": {
+//             "wins": 16,
+//             "losses": 17,
+//             "ot": 4,
+//             "type": "league"
+//           },
+//           "score": 0,
+//           "team": {
+//             "id": 23,
+//             "name": "Vancouver Canucks",
+//             "link": "/api/v1/teams/23"
+//           }
+//         },
+//         "home": {
+//           "leagueRecord": {
+//             "wins": 22,
+//             "losses": 11,
+//             "ot": 2,
+//             "type": "league"
+//           },
+//           "score": 0,
+//           "team": {
+//             "id": 20,
+//             "name": "Calgary Flames",
+//             "link": "/api/v1/teams/20"
+//           }
+//         }
+//       },
+//       "venue": {
+//         "id": 5075,
+//         "name": "Scotiabank Saddledome",
+//         "link": "/api/v1/venues/5075"
+//       },
+//       "content": {
+//         "link": "/api/v1/game/2018020596/content"
+//       }
+//     }],
+//     "events": [],
+//     "matches": []
+//   }, {
+//     "date": "2018-12-30",
+//     "totalItems": 1,
+//     "totalEvents": 0,
+//     "totalGames": 1,
+//     "totalMatches": 0,
+//     "games": [{
+//       "gamePk": 2018020598,
+//       "link": "/api/v1/game/2018020598/feed/live",
+//       "gameType": "R",
+//       "season": "20182019",
+//       "gameDate": "2018-12-31T01:00:00Z",
+//       "status": {
+//         "abstractGameState": "Preview",
+//         "codedGameState": "1",
+//         "detailedState": "Scheduled",
+//         "statusCode": "1",
+//         "startTimeTBD": false
+//       },
+//       "teams": {
+//         "away": {
+//           "leagueRecord": {
+//             "wins": 19,
+//             "losses": 15,
+//             "ot": 2,
+//             "type": "league"
+//           },
+//           "score": 0,
+//           "team": {
+//             "id": 54,
+//             "name": "Vegas Golden Knights",
+//             "link": "/api/v1/teams/54"
+//           }
+//         },
+//         "home": {
+//           "leagueRecord": {
+//             "wins": 14,
+//             "losses": 17,
+//             "ot": 2,
+//             "type": "league"
+//           },
+//           "score": 0,
+//           "team": {
+//             "id": 53,
+//             "name": "Arizona Coyotes",
+//             "link": "/api/v1/teams/53"
+//           }
+//         }
+//       },
+//       "venue": {
+//         "id": 5043,
+//         "name": "Gila River Arena",
+//         "link": "/api/v1/venues/5043"
+//       },
+//       "content": {
+//         "link": "/api/v1/game/2018020598/content"
+//       }
+//     }],
+//     "events": [],
+//     "matches": []
+//   }]
+//
